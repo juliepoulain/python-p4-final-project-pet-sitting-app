@@ -12,6 +12,9 @@ function App() {
           <Route exact path="/owner">
             <OwnerProfile />
           </Route>
+          <Route exact path="/">
+            <Homepage/>
+          </Route>
           {/* here is where we should add more routes (home, pets, etc) */}
         </Switch>
       </div>
