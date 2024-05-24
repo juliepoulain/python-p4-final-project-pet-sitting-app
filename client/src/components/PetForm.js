@@ -2,6 +2,7 @@ import { useState } from "react";
 
 function PetForm({ onAddPet }) {
   const [name, setName] = useState("");
+  const [animal, setAnimal] = useState("");
   const [breed, setBreed] = useState("");
   const [age, setAge] = useState("");
   const [temperament, setTemperament] = useState("");
@@ -11,6 +12,7 @@ function PetForm({ onAddPet }) {
     e.preventDefault();
     const newPet = {
       name,
+      animal,
       breed,
       age,
       temperament,
@@ -19,6 +21,7 @@ function PetForm({ onAddPet }) {
     onAddPet(newPet);
     // clear the form
     setName("");
+    setAnimal("");
     setBreed("");
     setAge("");
     setTemperament("");
@@ -47,6 +50,14 @@ function PetForm({ onAddPet }) {
         type="text"
         value={name}
         onChange={(e) => setName(e.target.value)}
+      />
+      <label htmlFor="animal">Animal:</label>
+      <input
+        id="animal"
+        name="animal"
+        type="text"
+        value={animal}
+        onChange={(e) => setAnimal(e.target.value)}
       />
       <label htmlFor="breed">Breed:</label>
       <input
