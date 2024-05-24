@@ -1,5 +1,5 @@
-import { NavLink } from "react-router-dom/cjs/react-router-dom.min";
-import { useState, useEffect } from "react";
+import React from "react";
+import { NavLink } from "react-router-dom";
 
 function NavBar() {
   return (
@@ -8,13 +8,13 @@ function NavBar() {
         Home
       </NavLink>
       <NavLink to="/pets" className="nav-link">
-        pets
+        Pets
       </NavLink>
       <NavLink to="/sitter" className="nav-link">
-        sitters
+        Sitter
       </NavLink>
       <NavLink to="/owner" className="nav-link">
-        owner
+        Owner
       </NavLink>
     </nav>
   );

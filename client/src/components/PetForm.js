@@ -23,6 +23,19 @@ function PetForm({ onAddPet }) {
     setAge("");
     setTemperament("");
     setPictureUrl("");
+    fetch("/pets", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(newPet),
+    }).then((r) => {
+      if (r.ok) {
+        r.json().then((newPets) => {
+          onAddPet(newPets);
+        });
+      }
+    });
   }
 
   return (
