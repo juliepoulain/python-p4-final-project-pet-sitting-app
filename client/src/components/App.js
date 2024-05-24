@@ -2,7 +2,8 @@ import React from "react";
 import { Switch, Route, BrowserRouter as Router } from "react-router-dom";
 import OwnerProfile from "./OwnerProfile";
 import NavBar from "./NavBar";
-import Homepage from "./Home/Homepage";
+import Homepage from "./Homepage";
+import VisitPage from "./VisitPage";
 
 function App() {
   return (
@@ -15,6 +16,10 @@ function App() {
           </Route>
           <Route exact path="/">
             <Homepage />
+          </Route>
+          <Route exact path="/visit">
+            {/* need to add /:id to above URL */}
+            <VisitPage />
           </Route>
           {/* here is where we should add more routes (home, pets, etc) */}
         </Switch>

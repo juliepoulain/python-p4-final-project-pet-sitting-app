@@ -1,8 +1,10 @@
 import { useState } from "react";
 import PetForm from "./PetForm";
+import VisitList from "./VisitList"
 
 function OwnerProfile() {
   const [pets, setPets] = useState([]);
+  const [sitters, setSitters] = useState([]);
 
   const handleAddPet = (newPet) => {
     setPets([...pets, newPet]);
@@ -37,6 +39,7 @@ function OwnerProfile() {
       </ul>
 
       <h3>Visits</h3>
+      <VisitList />
     </div>
   );
 }
