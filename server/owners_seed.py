@@ -25,9 +25,9 @@ with app.app_context():
     Owner.query.delete()
 
     print("Creating owners...")
-    julie = Owner(name="Julie", address='test')
-    billy = Owner(name="Billy", address="test2")
-    bia = Owner(name="Bia", address="test3")
+    julie = Owner(name="Julie", address='julieaddress', email="julieemail", phone=1111111111)
+    billy = Owner(name="Billy", address="billyaddress", email="billyemail", phone=1111111112)
+    bia = Owner(name="Bia", address="biaaddress", email="biaemail", phone=1111111113)
     owners = [julie, billy, bia]
     db.session.add_all(owners)
     db.session.commit()
