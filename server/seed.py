@@ -8,10 +8,30 @@ from faker import Faker
 
 # Local imports
 from app import app
-from models import db
+from models import db, Owner
 
 if __name__ == '__main__':
     fake = Faker()
     with app.app_context():
         print("Starting seed...")
         # Seed code goes here!
+
+
+with app.app_context():
+
+    # This will delete any existing rows
+    # so you can run the seed file multiple times without having duplicate entries in your database
+    print("Deleting data...")
+    Owner.query.delete()
+
+    print("Creating owners...")
+    julie = Owner(name="Julie", address='test')
+    billy = Owner(name="Billy", address="test2")
+    bia = Owner(name="Bia", address="test3")
+    owners = [julie, billy, bia]
+    db.session.add_all(owners)
+    db.session.commit()
+
+    print("Seeding done!")
+
+
