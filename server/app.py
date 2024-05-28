@@ -1,31 +1,43 @@
 #!/usr/bin/env python3
-
-# Standard library imports
-
-# Remote library imports
-from models import db
-from flask_migrate import Migrate
-from flask import Flask, request, make_response, jsonify
-from flask_restful import Api, Resource
-import os
-
-# Local imports
 from config import *
+import os
+from models import db
+from flask_restful import Resource
+from flask import make_response, jsonify
+from owner_models import Owner
+from app import api
 
 BASE_DIR = os.path.abspath(os.path.dirname(__file__))
 DATABASE = os.environ.get("DB_URI", f"sqlite:///{os.path.join(BASE_DIR, 'app.db')}")
 
-# Views go here!
+app = Flask(__name__)
+app.config["SQLALCHEMY_DATABASE_URI"] = DATABASE
+app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+app.json.compact = False
 
-@app.route('/')
+migrate = Migrate(app, db)
+
+db.init_app(app)
+
+api = Api(app)
+
+@app.route("/")
 def index():
-    return '<h1>Project Server</h1>'
-class Pets(Resource):
-    def get(self):
-        pets = [pet.to_dict() for pet in Pet.query.all()]
-        return make_response(jsonify(pets),200)
+    return "<h1>Code challenge</h1>"
+
+# class Pets(Resource):
+#     def get(self):
+#         pets = [pet.to_dict() for pet in Pet.query.all()]
+#         return make_response(jsonify(pets),200)
     
-api.add_resource(Pets, '/pets')
+# api.add_resource(Pets, '/pets')
+
+class Owners(Resource):
+    def get(self):
+        owners = [owner.to_dict() for owner in Owner.query.all()]
+        return make_response(jsonify(owners),200)
+    
+api.add_resource(Owners, '/owners')
 
 if __name__ == '__main__':
     app.run(port=5555, debug=True)

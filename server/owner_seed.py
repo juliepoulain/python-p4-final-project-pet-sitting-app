@@ -8,7 +8,8 @@ from faker import Faker
 
 # Local imports
 from app import app
-from models import db, Owner
+from owner_models import Owner
+from config import db
 
 if __name__ == '__main__':
     fake = Faker()
@@ -27,7 +28,7 @@ with app.app_context():
     print("Creating owners...")
     julie = Owner(name="Julie", address='julieaddress', email="julieemail", phone=1111111111)
     billy = Owner(name="Billy", address="billyaddress", email="billyemail", phone=1111111112)
-    bia = Owner(name="Bia", address="biaaddress", email="biaemail", phone=1111111113)
+    bia = Owner(name="Bia", address="biaaddress2", email="biaemail", phone=1111111113)
     owners = [julie, billy, bia]
     db.session.add_all(owners)
     db.session.commit()
