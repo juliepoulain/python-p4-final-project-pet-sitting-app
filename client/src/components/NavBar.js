@@ -10,7 +10,7 @@ function NavBar() {
       <NavLink to="/pets" className="nav-link">
         Pets
       </NavLink>
-      <NavLink to="/sitter" className="nav-link">
+      <NavLink to="/sitters/{id}" className="nav-link">
         Sitter
       </NavLink>
       <NavLink to="/owner/1" className="nav-link">
