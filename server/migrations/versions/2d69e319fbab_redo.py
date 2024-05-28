@@ -1,8 +1,8 @@
-"""sitter db
+"""redo
 
-Revision ID: 1a2b455c63ac
+Revision ID: 2d69e319fbab
 Revises: 
-Create Date: 2024-05-27 15:28:59.304123
+Create Date: 2024-05-28 12:50:24.463769
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '1a2b455c63ac'
+revision = '2d69e319fbab'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -21,6 +21,8 @@ def upgrade():
     op.create_table('owners',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('name', sa.String(), nullable=True),
+    sa.Column('email', sa.String(), nullable=True),
+    sa.Column('phone', sa.Integer(), nullable=True),
     sa.Column('address', sa.String(), nullable=True),
     sa.PrimaryKeyConstraint('id')
     )
