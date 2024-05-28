@@ -7,6 +7,7 @@ from flask import make_response, jsonify
 from owner_models import Owner
 from app import api
 
+
 BASE_DIR = os.path.abspath(os.path.dirname(__file__))
 DATABASE = os.environ.get("DB_URI", f"sqlite:///{os.path.join(BASE_DIR, 'app.db')}")
 
@@ -25,19 +26,27 @@ api = Api(app)
 def index():
     return "<h1>Code challenge</h1>"
 
-# class Pets(Resource):
-#     def get(self):
-#         pets = [pet.to_dict() for pet in Pet.query.all()]
-#         return make_response(jsonify(pets),200)
+class Pets(Resource):
+    def get(self):
+        pets = [pet.to_dict() for pet in Pet.query.all()]
+        return make_response(jsonify(pets),200)
     
-# api.add_resource(Pets, '/pets')
+api.add_resource(Pets, '/pets')
 
 class Owners(Resource):
     def get(self):
         owners = [owner.to_dict() for owner in Owner.query.all()]
         return make_response(jsonify(owners),200)
-    
+
+class OwnersById(Resource):
+    def get(self, id):
+        owner = db.session.get(Owner, id)
+        if not owner:
+            return make_response({"error": "Owner not found"}, 404)
+        return make_response(jsonify(owner.to_dict()), 200)
+
 api.add_resource(Owners, '/owners')
+api.add_resource(OwnersById, '/owners/<int:id>')
 
 if __name__ == '__main__':
     app.run(port=5555, debug=True)
