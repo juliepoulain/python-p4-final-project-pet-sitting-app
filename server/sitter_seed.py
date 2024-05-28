@@ -17,8 +17,8 @@ if __name__ == '__main__':
         print("Starting seed...")
         
         # Drop all existing data
-        db.drop(Sitter)
-        db.create_all()
+        # db.drop(Sitter)
+        # db.create_all()
 
         # Create Sitters
         sitters = [
