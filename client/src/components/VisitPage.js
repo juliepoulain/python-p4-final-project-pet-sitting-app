@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import NavBar from "./NavBar"
 
 const VisitProfile = () => {
   const { id } = useParams();
@@ -36,6 +37,7 @@ const VisitProfile = () => {
 
   return (
     <div>
+      <NavBar />
       <h1>Visit Information</h1>
       <h2>Date of Visit: 
         {/* {visit.date} */}

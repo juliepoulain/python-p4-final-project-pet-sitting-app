@@ -1,14 +1,15 @@
 import SitterSearch from "./SitterSearch";
 import SitterList from "./SitterList";
 import React, { useState } from "react";
+import NavBar from "./NavBar"
 
-function Homepage() {
+function Homepage({ownerId}) {
   const [search, setSearch] = useState("");
   const [sitters, setSitters] = useState([]);
 
   return (
     <>
-      <h4>Nav</h4>
+      <NavBar ownerId={ownerId}/>
       <h1>PetCare</h1>
       <h2>
         Going on a trip? Away for the weekend?

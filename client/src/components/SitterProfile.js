@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import NavBar from "./NavBar"
 
-const SitterProfile = () => {
+const SitterProfile = ({ownerId}) => {
   const { id } = useParams();
   const [sitter, setSitter] = useState(null);
   const [error, setError] = useState(null);
@@ -36,6 +37,7 @@ const SitterProfile = () => {
 
   return (
     <div>
+      <NavBar ownerId={ownerId}/>
       <h1>Sitter Profile</h1>
       <img src={sitter.image} alt={sitter.name} />
       <h2>{sitter.name}</h2>

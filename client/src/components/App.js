@@ -1,25 +1,28 @@
-import React from "react";
+import React, {useState} from "react";
 import { Switch, Route, BrowserRouter as Router } from "react-router-dom";
 import OwnerProfile from "./OwnerProfile";
-import NavBar from "./NavBar";
 import Homepage from "./Homepage";
 import VisitPage from "./VisitPage";
+import Login from "./Login";
 
 function App() {
+  const [ownerId, setOwnerId] = useState("")
   return (
     <Router>
       <div>
-        <NavBar />
         <Switch>
-          <Route exact path="/owner/1">
-            <OwnerProfile />
+          <Route exact path="/owner/:id">
+            <OwnerProfile ownerId={ownerId} setOwnerId={setOwnerId}/>
           </Route>
           <Route exact path="/">
-            <Homepage />
+            <Homepage ownerId={ownerId}/>
           </Route>
           <Route exact path="/visit">
             {/* need to add /:id to above URL */}
-            <VisitPage />
+            <VisitPage ownerId={ownerId}/>
+          </Route>
+          <Route exact path="/login">
+            <Login ownerId={ownerId} setOwnerId={setOwnerId}/>
           </Route>
           {/* here is where we should add more routes (home, pets, etc) */}
         </Switch>

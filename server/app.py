@@ -44,9 +44,18 @@ class OwnersById(Resource):
         if not owner:
             return make_response({"error": "Owner not found"}, 404)
         return make_response(jsonify(owner.to_dict()), 200)
+    
+class OwnersByPhone(Resource):
+    def get(self, phone):
+        owner = Owner.query.filter_by(phone=phone).first()
+        if not owner:
+            return make_response({"error": "Owner not found"}, 404)
+        return make_response(jsonify(owner.to_dict()), 200)
 
 api.add_resource(Owners, '/owners')
 api.add_resource(OwnersById, '/owners/<int:id>')
+api.add_resource(OwnersByPhone, '/owners/phone/<int:phone>')
+
 
 if __name__ == '__main__':
     app.run(port=5555, debug=True)
