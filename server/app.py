@@ -8,6 +8,7 @@ from owner_models import Owner
 from sitter_model import Sitter
 from app import api
 from pet_models import Pet
+from flask_cors import CORS
 
 
 BASE_DIR = os.path.abspath(os.path.dirname(__file__))
@@ -21,7 +22,7 @@ app.json.compact = False
 migrate = Migrate(app, db)
 
 db.init_app(app)
-
+CORS(app)
 api = Api(app)
 
 @app.route("/")

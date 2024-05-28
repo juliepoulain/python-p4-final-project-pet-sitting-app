@@ -4,6 +4,7 @@ import OwnerProfile from "./OwnerProfile";
 import NavBar from "./NavBar";
 import Homepage from "./Homepage";
 import VisitPage from "./VisitPage";
+import SitterProfile from "./SitterProfile";
 
 function App() {
   return (
@@ -20,6 +21,9 @@ function App() {
           <Route exact path="/visit">
             {/* need to add /:id to above URL */}
             <VisitPage />
+          </Route>
+          <Route exact path="/sitter/:id">
+            <SitterProfile />
           </Route>
           {/* here is where we should add more routes (home, pets, etc) */}
         </Switch>

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 const SitterList = () => {
   const [sitters, setSitters] = useState([]);
@@ -7,12 +8,7 @@ const SitterList = () => {
 
   useEffect(() => {
     fetch("/sitters")
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
-        return response.json();
-      })
+      .then((response) => response.json())
       .then((data) => {
         setSitters(data);
         setLoading(false);
@@ -36,7 +32,9 @@ const SitterList = () => {
       <h1>Sitters</h1>
       <ul>
         {sitters.map((sitter) => (
-          <li key={sitter.id}>{sitter.name}</li>
+          <li key={sitter.id}>
+            <Link to={`/sitter/${sitter.id}`}>{sitter.name}</Link>
+          </li>
         ))}
       </ul>
     </div>
