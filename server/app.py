@@ -5,6 +5,7 @@ from models import db
 from flask_restful import Resource
 from flask import make_response, jsonify
 from owner_models import Owner
+from sitter_model import Sitter
 from app import api
 
 
@@ -44,9 +45,23 @@ class OwnersById(Resource):
         if not owner:
             return make_response({"error": "Owner not found"}, 404)
         return make_response(jsonify(owner.to_dict()), 200)
+    
+class Sitters(Resource):
+    def get(self):
+        sitters = [sitter.to_dict() for sitter in Sitter.query.all()]
+        return make_response(jsonify(sitters), 200)
+
+class SitterById(Resource):
+    def get(self, id):
+        sitter = db.session.get(Sitter, id)
+        if not sitter:
+            return make_response({"error": "Sitter not found"}, 404)
+        return make_response(jsonify(sitter.to_dict()), 200)
 
 api.add_resource(Owners, '/owners')
 api.add_resource(OwnersById, '/owners/<int:id>')
+api.add_resource(Sitters, '/sitters')
+api.add_resource(SitterById, '/sitters/<int:id>')
 
 if __name__ == '__main__':
     app.run(port=5555, debug=True)
