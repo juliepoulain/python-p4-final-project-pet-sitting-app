@@ -11,7 +11,7 @@ function App() {
       <div>
         <NavBar />
         <Switch>
-          <Route exact path="/owner">
+          <Route exact path="/owner/1">
             <OwnerProfile />
           </Route>
           <Route exact path="/">

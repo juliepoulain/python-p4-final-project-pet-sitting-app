@@ -13,7 +13,7 @@ function NavBar() {
       <NavLink to="/sitter" className="nav-link">
         Sitter
       </NavLink>
-      <NavLink to="/owner" className="nav-link">
+      <NavLink to="/owner/1" className="nav-link">
         Owner
       </NavLink>
     </nav>
