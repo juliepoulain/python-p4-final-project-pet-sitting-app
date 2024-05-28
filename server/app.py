@@ -3,9 +3,12 @@ from config import *
 import os
 from models import db
 from flask_restful import Resource
-from flask import make_response, jsonify
+from flask import make_response, jsonify, request
 from owner_models import Owner
+from sitter_model import Sitter
 from app import api
+from pet_models import Pet
+from flask_cors import CORS
 
 
 BASE_DIR = os.path.abspath(os.path.dirname(__file__))
@@ -19,19 +22,59 @@ app.json.compact = False
 migrate = Migrate(app, db)
 
 db.init_app(app)
-
+CORS(app)
 api = Api(app)
 
 @app.route("/")
 def index():
-    return "<h1>Code challenge</h1>"
+    return "<h1>Petsitting</h1>"
 
 class Pets(Resource):
     def get(self):
         pets = [pet.to_dict() for pet in Pet.query.all()]
-        return make_response(jsonify(pets),200)
+        return make_response(jsonify(pets), 200)
+   
+    def post(self):
+        data = request.get_json()
+        new_pet = Pet(
+            name=data['name'],
+            animal=data['animal'],
+            breed=data['breed'],
+            age=data['age'],
+            temperament=data['temperament'],
+            image=data['image']
+        )
+        db.session.add(new_pet)
+        db.session.commit()
+        return make_response(jsonify(new_pet.to_dict()), 201)
     
+class PetsById(Resource):
+    
+    def get(self, id):
+        pet = Pet.query.get(id)
+        if pet is None:
+            return make_response(jsonify(error='Pet not found'), 404)
+        return make_response(jsonify(pet.to_dict()), 200)
+    
+    def patch(self, id):
+        pet = Pet.query.get(id)
+        if pet is None:
+            return make_response(jsonify(error='Pet not found'), 404)
+        for attr in request.get_json():
+            setattr(pet, attr, request.get_json()[attr])
+        db.session.commit()
+        return make_response(jsonify(pet.to_dict()), 200)
+    
+    def delete(self, id):
+        pet = Pet.query.get(id)
+        if pet is None:
+            return make_response(jsonify(error='Pet not found'), 404)
+        db.session.delete(pet)
+        db.session.commit()
+        return make_response('', 204)
+        
 api.add_resource(Pets, '/pets')
+api.add_resource(PetsById, '/pets/<int:id>')
 
 class Owners(Resource):
     def get(self):
@@ -55,6 +98,21 @@ class OwnersByPhone(Resource):
 api.add_resource(Owners, '/owners')
 api.add_resource(OwnersById, '/owners/<int:id>')
 api.add_resource(OwnersByPhone, '/owners/phone/<int:phone>')
+
+class Sitters(Resource):
+    def get(self):
+        sitters = [sitter.to_dict() for sitter in Sitter.query.all()]
+        return make_response(jsonify(sitters), 200)
+
+class SitterById(Resource):
+    def get(self, id):
+        sitter = db.session.get(Sitter, id)
+        if not sitter:
+            return make_response({"error": "Sitter not found"}, 404)
+        return make_response(jsonify(sitter.to_dict()), 200)
+
+api.add_resource(Sitters, '/sitters')
+api.add_resource(SitterById, '/sitters/<int:id>')
 
 
 if __name__ == '__main__':
