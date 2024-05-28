@@ -26,7 +26,7 @@ with app.app_context():
     Owner.query.delete()
 
     print("Creating owners...")
-    julie = Owner(name="Julie", address='julieaddress', email="julieemail", phone=1111111111)
+    julie = Owner(name="Julie", address='julieaddress', email="julieemail@gmail.com", phone=9785510848)
     billy = Owner(name="Billy", address="billyaddress", email="billyemail", phone=1111111112)
     bia = Owner(name="Bia", address="biaaddress2", email="biaemail", phone=1111111113)
     owners = [julie, billy, bia]
