@@ -15,6 +15,17 @@ class Pet(db.Model, SerializerMixin):
     temperament = db.Column(db.String)
     # owner_id = db.Column(db.Integer, db.ForeignKey('owners.id'))
     # owner = relationship('Owner', back_populates='pets')
+    
+    # def to_dict_with_pets(self):
+    #     return {
+    #         'id': self.id,
+    #         'name': self.name,
+    #         'image': self.image,
+    #         'breed':self.breed,
+    #         'age': self.age,
+    #         'temperament': self.temperament
+            
+    #     }
 
     def __repr__(self):
         return f'<Pet {self.id}, {self.name}, {self.image}, {self.animal}, {self.breed}, {self.age}, {self.temperament}, Owner: {self.owner_id}>'
