@@ -6,6 +6,7 @@ from flask_restful import Resource
 from flask import make_response, jsonify
 from owner_models import Owner
 from app import api
+from pet_models import Pet
 
 
 BASE_DIR = os.path.abspath(os.path.dirname(__file__))
