@@ -38,7 +38,7 @@ console.log(visit)
 
   return (
     <div>
-      <NavBar />
+      <NavBar ownerId={ownerId}/>
       <h1>Visit Information</h1>
       <h2>Date of Visit: {visit.date}</h2>
       <h2>Time of Visit: {visit.check_in_time}</h2>

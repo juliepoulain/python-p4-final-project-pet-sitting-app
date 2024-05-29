@@ -20,6 +20,13 @@ class Owner(db.Model, SerializerMixin):
     # add serialization rules
     serialize_rules = ('-visits.owner', '-pets.owner', '-sitters.owners')
 
+    # add validation
+    @validates("phone")
+    def validate_phone(self, _, phone):
+        if not isinstance(phone, int) or (len(str(phone)) != 10):
+            raise ValueError("Phone must be an integer with 10 characters, no spaces")
+        return phone
+
     def __repr__(self):
         return f"<Owner: {self.name}>"
     
@@ -58,6 +65,18 @@ class Sitter(db.Model, SerializerMixin):
     owners = association_proxy('visits', 'owner')
 
     serialize_rules = ('-visits.sitter', '-owners.sitters', '-visits.owner', '-visits.pet')
+
+    @validates("phone")
+    def validate_phone(self, _, phone):
+        if not isinstance(phone, int) or (len(str(phone)) != 10):
+            raise ValueError("Phone must be an integer with 10 characters, no spaces")
+        return phone
+    
+    @validates("experience")
+    def validate_experience(self, _, experience):
+        if not isinstance(experience, int) or (experience > 5):
+            raise ValueError("Experience must be an integer between 1 and 5")
+        return experience
 
 def repr(self):
         return f"<Sitter: {self.name}, Experience: {self.experience} years>"
