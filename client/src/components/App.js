@@ -26,10 +26,9 @@ function App() {
             {/* need to add /:id to above URL */}
             <VisitPage ownerId={ownerId} />
 
-
-          <Route exact path="/visit/:id">
-            <VisitPage ownerId={ownerId}/>
-
+            <Route exact path="/visit/:id">
+              <VisitPage ownerId={ownerId} />
+            </Route>
           </Route>
           <Route exact path="/login">
             <Login ownerId={ownerId} setOwnerId={setOwnerId} />
