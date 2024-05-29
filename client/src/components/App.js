@@ -3,6 +3,8 @@ import { Switch, Route, BrowserRouter as Router } from "react-router-dom";
 import OwnerProfile from "./OwnerProfile";
 import Homepage from "./Homepage";
 import VisitPage from "./VisitPage";
+import PetsList from "./PetsList";
+import SeeMorePetCard from "./SeeMorePetCard";
 
 import Login from "./Login";
 
@@ -31,6 +33,14 @@ function App() {
           <Route exact path="/sitter/:id">
             <SitterProfile />
           </Route>
+          <Route exact path="/pets">
+            <PetsList />
+          </Route>
+
+          <Route exact path="/pets/:id">
+            <SeeMorePetCard />
+          </Route>
+
           {/* here is where we should add more routes (home, pets, etc) */}
         </Switch>
       </div>
