@@ -28,7 +28,7 @@ function OwnerProfile({ownerId}) {
         <p>Phone Number: {owner.phone}</p>
         <p>Address: {owner.address}</p>
       <PetForm onAddPet={handleAddPet} />
-      {/* fetch the pets to display we need to have the pets card */}
+      {/* fetch the pets to display we need to have the pets card test*/}
       <h3>Pets</h3>
       <ul>
         {pets.map((pet, index) => (
