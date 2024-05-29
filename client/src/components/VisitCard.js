@@ -1,19 +1,13 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 
-function VisitCard({ date, sitter, pet }) {
+function VisitCard({ date, sitter, pet, id }) {
   return (
     <li className="card">
-      <p>Date: 
-        {/* {visit.date} */}
-        </p>
-      <p>For: 
-        {/* {pet.name} */}
-        </p>
-      <p>By: 
-        {/* {sitter.name} */}
-        </p>
-      <NavLink to="/visit" className="nav-link">
+      <p>Date: {date}</p>
+      <p>For: {pet}</p>
+      <p>By: {sitter}</p>
+      <NavLink to={`/visit/${id}`} className="nav-link">
         See Visit Details
       </NavLink>
     </li>

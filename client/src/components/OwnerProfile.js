@@ -36,7 +36,7 @@ function OwnerProfile({ownerId}) {
         ))}
       </ul>
       <h3>Visits</h3>
-      <VisitList />
+      <VisitList ownerId={ownerId}/>
     </div>
   )
 }
