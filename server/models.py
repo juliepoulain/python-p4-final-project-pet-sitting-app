@@ -18,7 +18,7 @@ class Owner(db.Model, SerializerMixin):
     sitters = association_proxy("visits", "sitter")
 
     # add serialization rules
-    serialize_rules = ('-visits.owner', '-pets.owner')
+    serialize_rules = ('-visits.owner', '-pets.owner', '-sitters.owners')
 
     def __repr__(self):
         return f"<Owner: {self.name}>"
@@ -40,7 +40,7 @@ class Pet(db.Model, SerializerMixin):
     def __repr__(self):
         return f'<Pet {self.id}, {self.name}, {self.image}, {self.animal}, {self.breed}, {self.age}, {self.temperament}, Owner: {self.owner_id}>'
 
-    serialize_rules = ('-owner.pets', '-visits.pet')
+    serialize_rules = ('-owner.pets', '-visits.pet', '-owner.visits')
 
 class Sitter(db.Model, SerializerMixin):
     __tablename__ = "sitters"
@@ -57,7 +57,7 @@ class Sitter(db.Model, SerializerMixin):
     visits = db.relationship('Visit', back_populates='sitter', cascade='all, delete-orphan')
     owners = association_proxy('visits', 'owner')
 
-    serialize_rules = ('-visits.sitter', '-owners.sitters')
+    serialize_rules = ('-visits.sitter', '-owners.sitters', '-visits.owner', '-visits.pet')
 
 def repr(self):
         return f"<Sitter: {self.name}, Experience: {self.experience} years>"
@@ -79,7 +79,7 @@ class Visit(db.Model, SerializerMixin):
     pet = db.relationship("Pet", back_populates="visits")
 
     # add serialization rules
-    serialize_rules = ('-owner.visits', '-sitter.visits', '-pet.visits')
+    serialize_rules = ('-owner.visits', '-sitter.visits', '-pet.visits', '-owner.pets', '-sitter.owners')
 
     def __repr__(self):
         return f"<Visit: {self.date}>"
