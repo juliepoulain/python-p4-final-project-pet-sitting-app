@@ -111,6 +111,21 @@ class SitterById(Resource):
 api.add_resource(Sitters, '/sitters')
 api.add_resource(SitterById, '/sitters/<int:id>')
 
+class Visits(Resource):
+    def get(self):
+        visits = [visit.to_dict() for visit in Visit.query.all()]
+        return make_response(jsonify(visits), 200)
+
+class VisitById(Resource):
+    def get(self, id):
+        visit = db.session.get(Visit, id)
+        if not visit:
+            return make_response({"error": "Visit not found"}, 404)
+        return make_response(jsonify(visit.to_dict()), 200)
+
+api.add_resource(Visits, '/visits')
+api.add_resource(VisitById, '/visits/<int:id>')
+
 
 if __name__ == '__main__':
     app.run(port=5555, debug=True)

@@ -1,30 +1,29 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import VisitCard from "./VisitCard";
 
-function VisitList() {
-// const [visits, setVisits] = useState([]);
-  //   useEffect(() => {
-  //     fetch("http://localhost:6001/visits")
-  //       .then((r) => r.json())
-  //       .then((visits) => {
-  //         setVisits(visits);
-  //         console.log(visits);
-  //       });
-  //   }, []);
+function VisitList({ ownerId }) {
+  const [visits, setVisits] = useState([]);
 
-  //   const visitCards = visits
-  //     .map((visit) => (
-  //       <VisitCard
-  //         key={visit.id}
-  //         date={visit.date}
-  //         sitter={sitter.name}
-  //         pet={pet.name}                
-  //       />
-  //     ));
+  useEffect(() => {
+    fetch(`/owners/${ownerId}`)
+      .then((r) => r.json())
+      .then((data) => {
+        setVisits(data.visits);
+      });
+  }, []);
+  console.log(visits);
 
-  //   return <ul className="cards">{sitterCards}</ul>;
+  const visitCards = visits.map((visit) => (
+    <VisitCard
+      key={visit.id}
+      date={visit.date}
+      pet={visit.pet.name}
+      sitter={visit.sitter.name}
+      id={visit.id}
+    />
+  ));
 
-  return <VisitCard />;
+  return <ul className="cards">{visitCards}</ul>;
 }
 
 export default VisitList;
