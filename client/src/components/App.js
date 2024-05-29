@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import { Switch, Route, BrowserRouter as Router } from "react-router-dom";
 import OwnerProfile from "./OwnerProfile";
 import Homepage from "./Homepage";
@@ -10,25 +10,24 @@ import Login from "./Login";
 
 import SitterProfile from "./SitterProfile";
 
-
 function App() {
-  const [ownerId, setOwnerId] = useState("")
+  const [ownerId, setOwnerId] = useState("");
   return (
     <Router>
       <div>
         <Switch>
           <Route exact path="/owner/:id">
-            <OwnerProfile ownerId={ownerId} setOwnerId={setOwnerId}/>
+            <OwnerProfile ownerId={ownerId} setOwnerId={setOwnerId} />
           </Route>
           <Route exact path="/">
-            <Homepage ownerId={ownerId}/>
+            <Homepage ownerId={ownerId} />
           </Route>
           <Route exact path="/visit">
             {/* need to add /:id to above URL */}
-            <VisitPage ownerId={ownerId}/>
+            <VisitPage ownerId={ownerId} />
           </Route>
           <Route exact path="/login">
-            <Login ownerId={ownerId} setOwnerId={setOwnerId}/>
+            <Login ownerId={ownerId} setOwnerId={setOwnerId} />
           </Route>
           <Route exact path="/sitter/:id">
             <SitterProfile />

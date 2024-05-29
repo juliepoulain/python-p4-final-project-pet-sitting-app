@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import NavBar from "./NavBar"
+import NavBar from "./NavBar";
 
-const SitterProfile = ({ownerId}) => {
+const SitterProfile = ({ ownerId }) => {
   console.log("SitterProfile component mounted");
   const { id } = useParams();
   const [sitter, setSitter] = useState(null);
@@ -23,7 +23,7 @@ const SitterProfile = ({ownerId}) => {
 
   return (
     <div>
-      <NavBar ownerId={ownerId}/>
+      <NavBar ownerId={ownerId} />
       <h2>Sitter Profile</h2>
       <div>
         <p>Name: {sitter.name}</p>

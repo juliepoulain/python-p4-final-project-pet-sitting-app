@@ -83,7 +83,7 @@ class OwnersById(Resource):
         owner = db.session.get(Owner, id)
         if not owner:
             return make_response({"error": "Owner not found"}, 404)
-        return make_response(jsonify(owner.to_dict()), 200)
+        return make_response(jsonify(owner.to_dict(only=('id', 'name', 'email', 'phone', 'address', 'pets', 'sitters'))), 200)
     
 class OwnersByPhone(Resource):
     def get(self, phone):
