@@ -1,15 +1,11 @@
 #!/usr/bin/env python3
 from config import *
 import os
-from models import db
 from flask_restful import Resource
 from flask import make_response, jsonify, request
-from owner_models import Owner
-from sitter_model import Sitter
+from models import Owner, Pet, Sitter, Visit, db
 from app import api
-from pet_models import Pet
 from flask_cors import CORS
-
 
 BASE_DIR = os.path.abspath(os.path.dirname(__file__))
 DATABASE = os.environ.get("DB_URI", f"sqlite:///{os.path.join(BASE_DIR, 'app.db')}")
