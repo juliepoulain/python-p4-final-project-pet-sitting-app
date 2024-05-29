@@ -18,7 +18,7 @@ function Homepage({ownerId}) {
       </h2>
       <h3>
         Our sitters are the best in the game. At PetCare, we believe in going
-        above and beyond the old "feed & leave" so you can feel rest assured
+        above and beyond the old "feed & leave" so you can be rest assured
         your pets will feel loved and cared for while their favorite human is
         away!
       </h3>
