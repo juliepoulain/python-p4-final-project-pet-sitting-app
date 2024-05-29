@@ -59,6 +59,7 @@ function OwnerProfile({ ownerId }) {
         ))}
       </ul>
       <h3>Visits</h3>
+
       <VisitList ownerId={ownerId} />
       <h3>Associated Sitters</h3>
       <ul>
@@ -68,6 +69,9 @@ function OwnerProfile({ ownerId }) {
           </li>
         ))}
       </ul>
+
+      <VisitList ownerId={ownerId}/>
+
     </div>
   );
 }

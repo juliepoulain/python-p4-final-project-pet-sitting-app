@@ -5,13 +5,12 @@ import Homepage from "./Homepage";
 import VisitPage from "./VisitPage";
 import PetsList from "./PetsList";
 import SeeMorePetCard from "./SeeMorePetCard";
-
 import Login from "./Login";
-
 import SitterProfile from "./SitterProfile";
 
 function App() {
   const [ownerId, setOwnerId] = useState("");
+
   return (
     <Router>
       <div>
@@ -22,9 +21,15 @@ function App() {
           <Route exact path="/">
             <Homepage ownerId={ownerId} />
           </Route>
+
           <Route exact path="/visit">
             {/* need to add /:id to above URL */}
             <VisitPage ownerId={ownerId} />
+
+
+          <Route exact path="/visit/:id">
+            <VisitPage ownerId={ownerId}/>
+
           </Route>
           <Route exact path="/login">
             <Login ownerId={ownerId} setOwnerId={setOwnerId} />
@@ -32,10 +37,9 @@ function App() {
           <Route exact path="/sitter/:id">
             <SitterProfile />
           </Route>
-          <Route exact path="/pets">
+          <Route exact path="/pets/:ownerId">
             <PetsList />
           </Route>
-
           <Route exact path="/pets/:id">
             <SeeMorePetCard />
           </Route>

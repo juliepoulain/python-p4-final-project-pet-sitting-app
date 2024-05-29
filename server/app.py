@@ -77,6 +77,18 @@ class Owners(Resource):
     def get(self):
         owners = [owner.to_dict() for owner in Owner.query.all()]
         return make_response(jsonify(owners),200)
+    
+    def post(self):
+        data = request.get_json()
+        new_owner = Owner(
+            name=data['name'],
+            address=data['address'],
+            email=data['email'],
+            phone=data['phone']
+        )
+        db.session.add(new_owner)
+        db.session.commit()
+        return make_response(jsonify(new_owner.to_dict()), 201)
 
 class OwnersById(Resource):
     def get(self, id):
@@ -100,6 +112,21 @@ class Sitters(Resource):
     def get(self):
         sitters = [sitter.to_dict() for sitter in Sitter.query.all()]
         return make_response(jsonify(sitters), 200)
+    
+    def post(self):
+        data = request.get_json()
+        new_sitter = Sitter(
+            name=data['name'],
+            address=data['address'],
+            bio=data['bio'],
+            phone=data['phone'],
+            email=data['email'],
+            experience=data['experience'],
+            image=data['image'],
+        )
+        db.session.add(new_sitter)
+        db.session.commit()
+        return make_response(jsonify(new_sitter.to_dict()), 201)
 
 class SitterById(Resource):
     def get(self, id):
@@ -110,6 +137,32 @@ class SitterById(Resource):
 
 api.add_resource(Sitters, '/sitters')
 api.add_resource(SitterById, '/sitters/<int:id>')
+
+class Visits(Resource):
+    def get(self):
+        visits = [visit.to_dict() for visit in Visit.query.all()]
+        return make_response(jsonify(visits), 200)
+    
+    def post(self):
+        data = request.get_json()
+        new_visit = Visit(
+            check_in_time=data['check_in_time'],
+            date=data['date'],
+            visit_notes=['visit_notes']
+        )
+        db.session.add(new_visit)
+        db.session.commit()
+        return make_response(jsonify(new_visit.to_dict()), 201)
+
+class VisitById(Resource):
+    def get(self, id):
+        visit = db.session.get(Visit, id)
+        if not visit:
+            return make_response({"error": "Visit not found"}, 404)
+        return make_response(jsonify(visit.to_dict()), 200)
+
+api.add_resource(Visits, '/visits')
+api.add_resource(VisitById, '/visits/<int:id>')
 
 
 if __name__ == '__main__':
