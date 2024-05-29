@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-function SeeMoreCard({ petId }) {
+function SeeMorePetCard({ petId }) {
   const [pet, setPet] = useState(null);
 
   useEffect(() => {
@@ -37,5 +37,4 @@ function SeeMoreCard({ petId }) {
     </li>
   );
 }
-
-export default SeeMoreCard;
+export default SeeMorePetCard;
