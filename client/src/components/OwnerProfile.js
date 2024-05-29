@@ -26,7 +26,7 @@ function OwnerProfile({ ownerId }) {
       .then((data) => {
         setOwner(data);
         setPets(data.pets || []);
-        setSitters(data.sitters || []);
+        setSitters(data.unique_sitters || []);
         setLoading(false);
       })
       .catch((error) => {
@@ -69,9 +69,6 @@ function OwnerProfile({ ownerId }) {
           </li>
         ))}
       </ul>
-
-      <VisitList ownerId={ownerId}/>
-
     </div>
   );
 }

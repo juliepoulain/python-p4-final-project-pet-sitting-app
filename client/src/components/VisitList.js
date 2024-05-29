@@ -8,10 +8,11 @@ function VisitList({ ownerId }) {
     fetch(`/owners/${ownerId}`)
       .then((r) => r.json())
       .then((data) => {
-        setVisits(data.visits);
+        if (data.visits) {
+          setVisits(data.visits);
+        }
       });
   }, []);
-  console.log(visits);
 
   const visitCards = visits.map((visit) => (
     <VisitCard
@@ -22,8 +23,12 @@ function VisitList({ ownerId }) {
       id={visit.id}
     />
   ));
-
-  return <ul className="cards">{visitCards}</ul>;
+  console.log(visitCards);
+  return (
+    <>
+      <ul className="cards">{visitCards}</ul>
+    </>
+  );
 }
 
 export default VisitList;
