@@ -11,7 +11,7 @@ function NavBar({ownerId}) {
         Pets
       </NavLink>
       <NavLink to={`/owner/${ownerId}`} className="nav-link">
-        Owner
+        Profile
       </NavLink>
       <NavLink to="/login" className="nav-link">
         Log Out
