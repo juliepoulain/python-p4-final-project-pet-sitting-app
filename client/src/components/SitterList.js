@@ -1,33 +1,44 @@
-import React, { useEffect } from "react";
-import SitterCard from "./SitterCard";
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
-function SitterList({ search, sitters, setSitters }) {
-  //   useEffect(() => {
-  //     fetch("http://localhost:6001/sitters")
-  //       .then((r) => r.json())
-  //       .then((sitters) => {
-  //         setSitters(sitters);
-  //         console.log(sitters);
-  //       });
-  //   }, []);
+const SitterList = () => {
+  const [sitters, setSitters] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-  //   const sitterCards = sitters
-  //     .filter((sitter) => {
-  //       return sitter.name.toLowerCase().includes(search.toLowerCase());
-  //     })
-  //     .map((sitter) => (
-  //       <SitterCard
-  //         key={sitter.id}
-  //         image={sitter.image}
-  //         name={sitter.name}
-  //         address={sitter.address}
-  //         phone={sitter.phone}
-  //         email={sitter.email}
-  //       />
-  //     ));
+  useEffect(() => {
+    fetch("/sitters")
+      .then((response) => response.json())
+      .then((data) => {
+        setSitters(data);
+        setLoading(false);
+      })
+      .catch((error) => {
+        setError(error);
+        setLoading(false);
+      });
+  }, []);
 
-  //   return <ul className="cards">{sitterCards}</ul>;
-  return <SitterCard />;
-}
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>Error: {error.message}</div>;
+  }
+
+  return (
+    <div>
+      <h1>Sitters</h1>
+      <ul>
+        {sitters.map((sitter) => (
+          <li key={sitter.id}>
+            <Link to={`/sitter/${sitter.id}`}>{sitter.name}</Link>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+};
 
 export default SitterList;

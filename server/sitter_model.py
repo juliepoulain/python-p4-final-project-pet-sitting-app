@@ -1,5 +1,9 @@
 from config import *
 from sqlalchemy_serializer import SerializerMixin
+from sqlalchemy.orm import relationship
+from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy.ext.associationproxy import association_proxy
+
 
 
 class Sitter(db.Model, SerializerMixin):
@@ -13,3 +17,10 @@ class Sitter(db.Model, SerializerMixin):
     address = db.Column(db.String, nullable=True)
     phone = db.Column(db.String, nullable=True)
     email = db.Column(db.String, nullable=True)
+
+    visits = db.relationship('Visit', back_populates='sitter', cascade='all, delete-orphan')
+    owners = association_proxy('visits', 'owner')
+
+    
+def __repr__(self):
+        return f"<Sitter: {self.name}, Experience: {self.experience} years>"

@@ -1,59 +1,39 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import NavBar from "./NavBar"
 
-const SitterProfile = () => {
+const SitterProfile = ({ownerId}) => {
+  console.log("SitterProfile component mounted");
   const { id } = useParams();
   const [sitter, setSitter] = useState(null);
-  const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch(`/sitters/${id}`)
-      .then((response) => {
-        if (response.ok) {
-          return response.json();
-        } else {
-          throw new Error("Sitter not found");
-        }
-      })
+    console.log("Fetching sitter with ID:", id);
+    fetch(`http://localhost:5555/sitters/${id}`)
+      .then((r) => r.json())
       .then((data) => {
         setSitter(data);
-        setLoading(false);
-      })
-      .catch((error) => {
-        setError(error.message);
-        setLoading(false);
+        console.log("Fetched sitter data:", data);
       });
   }, [id]);
 
-  if (loading) {
+  if (!sitter) {
     return <div>Loading...</div>;
-  }
-
-  if (error) {
-    return <div>Error: {error}</div>;
   }
 
   return (
     <div>
-      <h1>Sitter Profile</h1>
-      <img src={sitter.image} alt={sitter.name} />
-      <h2>{sitter.name}</h2>
-      <p>
-        <strong>Phone:</strong> {sitter.phone}
-      </p>
-      <p>
-        <strong>Address:</strong> {sitter.address}
-      </p>
-      <p>
-        <strong>Email:</strong> {sitter.email}
-      </p>
-      <p>
-        <strong>Bio:</strong> {sitter.bio}
-      </p>
-      <p>
-        <strong>Experience:</strong> {sitter.experience} years
-      </p>
+      <NavBar ownerId={ownerId}/>
+      <h2>Sitter Profile</h2>
+      <div>
+        <p>Name: {sitter.name}</p>
+        <img src={sitter.image} alt={sitter.name} />
+        <p>{sitter.bio}</p>
+        <p>Experience: {sitter.experience} years</p>
+        <p>Phone: {sitter.phone}</p>
+        <p>Address: {sitter.address}</p>
+        <p>Email: {sitter.email}</p>
+      </div>
     </div>
   );
 };

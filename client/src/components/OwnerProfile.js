@@ -1,34 +1,32 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import PetForm from "./PetForm";
-import VisitList from "./VisitList"
+import VisitList from "./VisitList";
+import NavBar from "./NavBar"
 
-function OwnerProfile() {
+function OwnerProfile({ownerId}) {
   const [pets, setPets] = useState([]);
-  const [sitters, setSitters] = useState([]);
+  const [owner, setOwner] = useState({})
 
   const handleAddPet = (newPet) => {
     setPets([...pets, newPet]);
   };
 
+  useEffect(() => {
+    fetch(`/owners/${ownerId}`)
+      .then((r) => r.json())
+      .then((data) => {
+        setOwner(data)
+      })
+  }, []);
+
   return (
     <div>
+      <NavBar ownerId={ownerId}/>
       <h2>Owner Profile</h2>
-      {/* hard coded for now but we can uncoment for fetch */}
-      <div>
-        <p>Name: Jessica</p>
-        <p>Email: test@gmail.com</p>
-        <p>Phone Number: 123-456-7890</p>
-        <p>Address: 123 whatever st</p>
-      </div>
-
-      {/* {ownerInfo && (
- <div>
- <p>Name: {ownerInfo.name}</p>
-<p>Email: {ownerInfo.email}</p>
-<p>Phone Number: {ownerInfo.phoneNumber}</p>
-<p>Address: {ownerInfo.address}</p> 
-</div>)} */}
-
+        <p>Name: {owner.name}</p>
+        <p>Email: {owner.email}</p>
+        <p>Phone Number: {owner.phone}</p>
+        <p>Address: {owner.address}</p>
       <PetForm onAddPet={handleAddPet} />
       {/* fetch the pets to display we need to have the pets card */}
       <h3>Pets</h3>
@@ -37,11 +35,10 @@ function OwnerProfile() {
           <li key={index}>{pet.name}</li>
         ))}
       </ul>
-
       <h3>Visits</h3>
       <VisitList />
     </div>
-  );
+  )
 }
 
-export default OwnerProfile;
+export default OwnerProfile

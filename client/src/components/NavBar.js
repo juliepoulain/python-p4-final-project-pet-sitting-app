@@ -2,24 +2,23 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import "./NavBar.css";
 
-function NavBar() {
+function NavBar({ownerId}) {
   return (
-    <div className="navbar">
-      <nav className="navbar">
-        <NavLink to="/" className="nav-link">
-          Home
-        </NavLink>
-        <NavLink to="/pets" className="nav-link">
-          Pets
-        </NavLink>
-        <NavLink to="/sitter" className="nav-link">
-          Sitter
-        </NavLink>
-        <NavLink to="/owner" className="nav-link">
-          Owner
-        </NavLink>
-      </nav>
-    </div>
+
+    <nav className="navbar">
+      <NavLink to="/" className="nav-link">
+        Home
+      </NavLink>
+      <NavLink to="/pets" className="nav-link">
+        Pets
+      </NavLink>
+      <NavLink to={`/owner/${ownerId}`} className="nav-link">
+        Profile
+      </NavLink>
+      <NavLink to="/login" className="nav-link">
+        Log Out
+      </NavLink>
+    </nav>
   );
 }
 
