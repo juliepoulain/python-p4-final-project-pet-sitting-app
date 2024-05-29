@@ -18,7 +18,7 @@ class Owner(db.Model, SerializerMixin):
     sitters = association_proxy("visits", "sitter")
 
     # add serialization rules
-    serialize_rules = ('-visits.owner', '-pets.owner', '-sitters.owners')
+    serialize_rules = ('-visits.owner', '-pets.owner', 'sitters')
 
     # add validation
     @validates("phone")
