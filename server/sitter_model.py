@@ -18,7 +18,7 @@ class Sitter(db.Model, SerializerMixin):
     phone = db.Column(db.String, nullable=True)
     email = db.Column(db.String, nullable=True)
 
-    visits = relationship('Visit', back_populates='sitter', cascade='all, delete-orphan')
+    visits = db.relationship('Visit', back_populates='sitter', cascade='all, delete-orphan')
     owners = association_proxy('visits', 'owner')
 
     
