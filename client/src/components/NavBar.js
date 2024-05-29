@@ -10,9 +10,6 @@ function NavBar({ownerId}) {
       <NavLink to="/pets" className="nav-link">
         Pets
       </NavLink>
-      <NavLink to="/sitters/{id}" className="nav-link">
-        Sitter
-      </NavLink>
       <NavLink to={`/owner/${ownerId}`} className="nav-link">
         Owner
       </NavLink>
