@@ -53,15 +53,16 @@ function App() {
           </Route>
 
           <Route exact path="/sitters/:id">
-            {ownerId ? (
+            <SitterProfile />
+            {/* {ownerId ? (
               <SitterProfile />
             ) : (
               <Login ownerId={ownerId} setOwnerId={setOwnerId} />
-            )}
+            )} */}
           </Route>
           <Route exact path="/pets">
             {ownerId ? (
-              <PetsList ownerId={ownerId} />
+              <PetsList ownerId={ownerId} setOwnerId={setOwnerId} />
             ) : (
               <Login ownerId={ownerId} setOwnerId={setOwnerId} />
             )}
