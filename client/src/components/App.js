@@ -7,6 +7,7 @@ import PetsList from "./PetsList";
 import SeeMorePetCard from "./SeeMorePetCard";
 import Login from "./Login";
 import SitterProfile from "./SitterProfile";
+import HomepageLogout from "./HomepageLogout";
 
 function App() {
   const [ownerId, setOwnerId] = useState("");
@@ -15,26 +16,54 @@ function App() {
     <Router>
       <div>
         <Switch>
-          <Route exact path="/owner/:id">
-            <OwnerProfile ownerId={ownerId} setOwnerId={setOwnerId} />
-          </Route>
           <Route exact path="/">
-            <Homepage ownerId={ownerId} />
+            {ownerId ? (
+              <Homepage ownerId={ownerId} />
+            ) : (
+              <HomepageLogout ownerId={ownerId} setOwnerId={setOwnerId} />
+            )}
           </Route>
-          <Route exact path="/visit/:id">
-            <VisitPage ownerId={ownerId} />
-          </Route>
+
           <Route exact path="/login">
             <Login ownerId={ownerId} setOwnerId={setOwnerId} />
           </Route>
+
+          <Route exact path="/owner/:id">
+            {ownerId ? (
+              <OwnerProfile ownerId={ownerId} setOwnerId={setOwnerId} />
+            ) : (
+              <Login ownerId={ownerId} setOwnerId={setOwnerId} />
+            )}
+          </Route>
+
+          <Route exact path="/visit/:id">
+            {ownerId ? (
+              <VisitPage ownerId={ownerId} />
+            ) : (
+              <Login ownerId={ownerId} setOwnerId={setOwnerId} />
+            )}
+          </Route>
+
           <Route exact path="/sitters/:id">
-            <SitterProfile />
+            {ownerId ? (
+              <SitterProfile />
+            ) : (
+              <Login ownerId={ownerId} setOwnerId={setOwnerId} />
+            )}
           </Route>
           <Route exact path="/pets">
-            <PetsList ownerId={ownerId} />
+            {ownerId ? (
+              <PetsList ownerId={ownerId} />
+            ) : (
+              <Login ownerId={ownerId} setOwnerId={setOwnerId} />
+            )}
           </Route>
           <Route exact path="/pets/:id">
-            <SeeMorePetCard ownerId={ownerId} />
+            {ownerId ? (
+              <SeeMorePetCard ownerId={ownerId} />
+            ) : (
+              <Login ownerId={ownerId} setOwnerId={setOwnerId} />
+            )}
           </Route>
         </Switch>
       </div>

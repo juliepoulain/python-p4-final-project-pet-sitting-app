@@ -59,12 +59,15 @@ function PetFormEdit({ pet, onEditPet }) {
         onChange={(e) => setName(e.target.value)}
         placeholder="Name"
       />
-      <input
-        type="text"
-        value={animal}
-        onChange={(e) => setAnimal(e.target.value)}
-        placeholder="Animal"
-      />
+      <select value={animal} onChange={(e) => setAnimal(e.target.value)}>
+        <option value="">Select an animal</option>
+        <option value="cat">Cat</option>
+        <option value="dog">Dog</option>
+        <option value="rabbit">Rabbit</option>
+        <option value="hamster">Hamster</option>
+        <option value="bird">Bird</option>
+      </select>
+
       <input
         type="text"
         value={breed}
