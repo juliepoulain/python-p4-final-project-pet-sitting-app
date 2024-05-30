@@ -51,7 +51,6 @@ function OwnerProfile({ ownerId }) {
       <p>Phone Number: {owner.phone}</p>
       <p>Address: {owner.address}</p>
 
-
       <h3>My Pets</h3>
 
       <ul>
@@ -59,7 +58,7 @@ function OwnerProfile({ ownerId }) {
           <li key={index}>{pet.name}</li>
         ))}
       </ul>
-
+      <br />
       <NavLink to={`/pets`} className="nav-link">
         Manage My Pets
       </NavLink>
