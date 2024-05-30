@@ -31,7 +31,6 @@ function NavBar({ ownerId }) {
         </NavLink>
       </div>
     </nav>
-    </div>
   );
 }
 
