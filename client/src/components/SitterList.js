@@ -33,7 +33,7 @@ const SitterList = () => {
       <ul>
         {sitters.map((sitter) => (
           <li key={sitter.id}>
-            <Link to={`/sitter/${sitter.id}`}>{sitter.name}</Link>
+            <Link to={`/sitters/${sitter.id}`}>{sitter.name}</Link>
           </li>
         ))}
       </ul>

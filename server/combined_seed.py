@@ -40,7 +40,7 @@ with app.app_context():
             experience=7,
             image="https://images.nightcafe.studio/jobs/6sLDmT6whBds1MnmQf6y/6sLDmT6whBds1MnmQf6y--1--5hp52_2x.jpg?tr=w-1200,c-at_max",
             address="12 Crystal Lake, Wantabe, NJ 07050",
-            phone="(717)-555-7878",
+            phone=1111111111,
             email="jvorheesluvsyou1@madeup.com"
         ),
         Sitter(
@@ -49,7 +49,7 @@ with app.app_context():
             experience=10,
             image="https://static1.srcdn.com/wordpress/wp-content/uploads/2016/10/Nightmare-on-Elm-Street-6.jpg",
             address="1428 Elm Street, Springwood, OH 45459",
-            phone="(513)-555-1234",
+            phone=1111111111,
             email="fkrueger@nightmares.com"
         ),
         Sitter(
@@ -58,7 +58,7 @@ with app.app_context():
             experience=8,
             image="https://coleandmarmalade.com/wp-content/uploads/2022/03/Michael-Meowers-1.jpg",
             address="45 Lampkin Lane, Haddonfield, IL 60120",
-            phone="(312)-555-7890",
+            phone=1111111111,
             email="mmyers@halloween.com"
         ),
         Sitter(
@@ -67,7 +67,7 @@ with app.app_context():
             experience=5,
             image="https://static1.srcdn.com/wordpress/wp-content/uploads/2021/10/Brad-Dourif-as-Chucky-with-Binx-the-Cat-in-Chucky-Episode-1.jpg",
             address="123 Good Guys St, Hackensack, NJ 07601",
-            phone="(201)-555-5678",
+            phone=1111111111,
             email="cray@goodguys.com"
         ),
         Sitter(
@@ -76,7 +76,7 @@ with app.app_context():
             experience=6,
             image="https://m.media-amazon.com/images/M/MV5BMWZiYmM3MzItYzFiOC00N2VmLWEwOWQtZTYzYjFmNjZlMWRlL2ltYWdlL2ltYWdlXkEyXkFqcGdeQXVyNzAzMDEzNTI@._V1_.jpg",
             address="12 Old Highway, Fairvale, CA 93922",
-            phone="(408)-555-1122",
+            phone=1111111111,
             email="nbates@batesmotel.com"
         ),
         Sitter(
@@ -85,7 +85,7 @@ with app.app_context():
             experience=9,
             image="https://photos.costume-works.com/full/pennywise_and_his_dog-31298-1.jpg",
             address="29 Neibolt Street, Derry, ME 04401",
-            phone="(207)-555-8787",
+            phone=1111111111,
             email="pennywise@it.com"
         )
     ]

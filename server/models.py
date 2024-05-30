@@ -1,6 +1,7 @@
 from sqlalchemy.orm import validates
 from sqlalchemy.ext.associationproxy import association_proxy
 from sqlalchemy_serializer import SerializerMixin
+from sqlalchemy.ext.hybrid import hybrid_property
 from config import *
 
 class Owner(db.Model, SerializerMixin):
@@ -17,8 +18,20 @@ class Owner(db.Model, SerializerMixin):
     pets = db.relationship("Pet", back_populates="owner")
     sitters = association_proxy("visits", "sitter")
 
+    @hybrid_property
+    def unique_sitters(self):
+        sitter_list = [visit.sitter for visit in self.visits]
+        unique_sitter_list = list(set(sitter_list))
+        return unique_sitter_list
     # add serialization rules
-    serialize_rules = ('-visits.owner', '-pets.owner', '-sitters.owners')
+    serialize_rules = ('-visits.owner', '-pets.owner', 'sitters')
+
+    # add validation
+    @validates("phone")
+    def validate_phone(self, _, phone):
+        if not isinstance(phone, int) or (len(str(phone)) != 10):
+            raise ValueError("Phone must be an integer with 10 characters, no spaces")
+        return phone
 
     def __repr__(self):
         return f"<Owner: {self.name}>"
@@ -58,6 +71,18 @@ class Sitter(db.Model, SerializerMixin):
     owners = association_proxy('visits', 'owner')
 
     serialize_rules = ('-visits.sitter', '-owners.sitters', '-visits.owner', '-visits.pet')
+
+    @validates("phone")
+    def validate_phone(self, _, phone):
+        if not isinstance(phone, int) or (len(str(phone)) != 10):
+            raise ValueError("Phone must be an integer with 10 characters, no spaces")
+        return phone
+    
+    @validates("experience")
+    def validate_experience(self, _, experience):
+        if not isinstance(experience, int) or (experience > 10):
+            raise ValueError("Experience must be an integer between 1 and 10")
+        return experience
 
 def repr(self):
         return f"<Sitter: {self.name}, Experience: {self.experience} years>"
