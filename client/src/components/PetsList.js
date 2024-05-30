@@ -3,7 +3,7 @@ import PetForm from "./PetForm";
 import NavBar from "./NavBar";
 import SeeMorePetCard from "./SeeMorePetCard";
 import PetFormEdit from "./PetFormEdit";
-import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 
 
@@ -48,8 +48,7 @@ function PetsList({ ownerId }) {
 
   return (
     <div>
-      <NavBar ownerId={ownerId} />
-      <h1>Pets List</h1>
+      <h1>My Pets</h1>
       <ul>
         {pets.map((pet) => (
           <li key={pet.id}>
@@ -58,9 +57,9 @@ function PetsList({ ownerId }) {
             <p>Breed: {pet.breed}</p>
             <div className="button-container">
               {/* <button onClick={() => setShowMore(pet.id)}>See more</button> */}
-              <NavLink to={`/pets/${pet.id}`} className="nav-link">
-                See Pet Details
-              </NavLink>
+              <Link to={`/pets/${pet.id}`} className="button-link">
+                View Pet Details
+              </Link>
               <button onClick={() => setEditPet(pet)}>Edit</button>
               <button onClick={() => handleDeletePet(pet.id)}>Delete</button>
             </div>
@@ -68,6 +67,7 @@ function PetsList({ ownerId }) {
         ))}
       </ul>
       {editPet && <PetFormEdit onEditPet={handleEditPet} pet={editPet} />}
+      <h3>Add Pets:</h3>
       <PetForm onAddPet={handleAddPet} ownerId={ownerId} />
     </div>
   );

@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import PetForm from "./PetForm";
 import VisitList from "./VisitList";
 import NavBar from "./NavBar";
@@ -45,23 +45,28 @@ function OwnerProfile({ ownerId }) {
 
   return (
     <div>
-      <NavBar ownerId={ownerId} />
-      <h2>Owner Profile</h2>
+      <h2>My Profile</h2>
       <p>Name: {owner.name}</p>
       <p>Email: {owner.email}</p>
       <p>Phone Number: {owner.phone}</p>
       <p>Address: {owner.address}</p>
 
-      <h3>Pets</h3>
+
+      <h3>My Pets</h3>
+
       <ul>
         {pets.map((pet, index) => (
           <li key={index}>{pet.name}</li>
         ))}
       </ul>
-      <h3>Visits</h3>
+
+      <NavLink to={`/pets`} className="nav-link">
+        Manage My Pets
+      </NavLink>
+      <h3>Past Visits</h3>
 
       <VisitList ownerId={ownerId} />
-      <h3>Associated Sitters</h3>
+      <h3>My Past Sitters</h3>
       <ul>
         {sitters.map((sitter) => (
           <li key={sitter.id}>

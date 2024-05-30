@@ -23,7 +23,6 @@ function SeeMorePetCard({ ownerId }) {
 
   return (
     <div>
-      <NavBar ownerId={ownerId} />
       <div>
         <h2>{name}</h2>
         <img src={image} alt={name} />

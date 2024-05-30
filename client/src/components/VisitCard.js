@@ -8,7 +8,7 @@ function VisitCard({ date, sitter, pet, id }) {
       <p>For: {pet}</p>
       <p>By: {sitter}</p>
       <NavLink to={`/visit/${id}`} className="nav-link">
-        See Visit Details
+        View Visit Details
       </NavLink>
     </li>
   );
