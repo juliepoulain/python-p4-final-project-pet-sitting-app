@@ -3,22 +3,23 @@ import { useParams } from "react-router-dom";
 import NavBar from "./NavBar";
 
 function SeeMorePetCard({ petId, ownerId }) {
-  const { id } = useParams(); // Correctly destructure useParams
+  //   const { id } = useParams();
   const [pet, setPet] = useState(null);
 
   useEffect(() => {
+    console.log(petId);
     fetch(`http://localhost:5555/pets/${petId}`)
       .then((response) => response.json())
       .then((data) => {
         setPet(data);
       });
-  }, [petId]); // Use petId in the dependency array
+  }, [petId]);
 
   if (!pet) {
     return <div>Loading...</div>;
   }
 
-  const { name, image, animal, breed, age, temperament } = pet; // Destructure pet properties
+  const { name, image, animal, breed, age, temperament } = pet;
 
   return (
     <div>

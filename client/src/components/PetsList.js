@@ -6,8 +6,6 @@ import SeeMorePetCard from "./SeeMorePetCard";
 
 function PetsList({ ownerId }) {
   const [pets, setPets] = useState([]);
-  const [loginMessage, setLoginMessage] = useState("");
-  const [editPet, setEditPet] = useState(null);
   const [showMore, setShowMore] = useState(null);
 
   useEffect(() => {
@@ -17,8 +15,6 @@ function PetsList({ ownerId }) {
         .then((data) => {
           setPets(data.pets);
         });
-    } else {
-      setLoginMessage("Please log in to view your pets.");
     }
   }, [ownerId]);
 
@@ -39,7 +35,6 @@ function PetsList({ ownerId }) {
     <div>
       <NavBar ownerId={ownerId} />
       <h1>Pets List</h1>
-      {loginMessage && <p>{loginMessage}</p>}
       <ul>
         {pets.map((pet) => (
           <li key={pet.id}>
