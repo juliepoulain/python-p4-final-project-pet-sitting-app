@@ -22,9 +22,7 @@ function App() {
             <Homepage ownerId={ownerId} />
           </Route>
           <Route exact path="/visit/:id">
-
-              <VisitPage ownerId={ownerId} />
-
+            <VisitPage ownerId={ownerId} />
           </Route>
           <Route exact path="/login">
             <Login ownerId={ownerId} setOwnerId={setOwnerId} />
