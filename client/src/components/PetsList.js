@@ -4,9 +4,10 @@ import NavBar from "./NavBar";
 import SeeMorePetCard from "./SeeMorePetCard";
 import PetFormEdit from "./PetFormEdit";
 
+
 function PetsList({ ownerId }) {
   const [pets, setPets] = useState([]);
-  const [showMore, setShowMore] = useState(null);
+  // const [showMore, setShowMore] = useState(null);
   const [editPet, setEditPet] = useState(null);
 
   // Initial fetch to get pets by the owner
@@ -38,10 +39,10 @@ function PetsList({ ownerId }) {
     fetch(`/pets/${petId}`, { method: "DELETE" }).then(() => {});
   };
 
-//button to show more, redirect to /pet/petid with more info
-  if (showMore) {
-    return <SeeMorePetCard petId={showMore} ownerId={ownerId} />;
-  }
+
+  // if (showMore) {
+  //   return <SeeMorePetCard petId={showMore} ownerId={ownerId} />;
+  // }
 
   return (
     <div>
@@ -54,7 +55,10 @@ function PetsList({ ownerId }) {
             <p>Animal: {pet.animal}</p>
             <p>Breed: {pet.breed}</p>
             <div className="button-container">
-              <button onClick={() => setShowMore(pet.id)}>See more</button>
+              {/* <button onClick={() => setShowMore(pet.id)}>See more</button> */}
+              <NavLink to={`/pets/${pet.id}`} className="nav-link">
+                See Pet Details
+              </NavLink>
               <button onClick={() => setEditPet(pet)}>Edit</button>
               <button onClick={() => handleDeletePet(pet.id)}>Delete</button>
             </div>
