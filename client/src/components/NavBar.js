@@ -9,11 +9,11 @@ function NavBar({ ownerId }) {
       </NavLink>
       {ownerId ? (
         <NavLink to={`/pets`} className="nav-link">
-          Pets
+          My Pets
         </NavLink>
       ) : (
         <NavLink to="/login" className="nav-link">
-          Pets
+          My Pets
         </NavLink>
       )}
       <NavLink to={`/owner/${ownerId}`} className="nav-link">

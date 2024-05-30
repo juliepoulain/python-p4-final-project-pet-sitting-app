@@ -49,21 +49,43 @@ function PetForm({ ownerId, onAddPet }) {
 
   return (
     <form onSubmit={handleSubmit}>
-      <label>Name:</label>
-      <input value={name} onChange={(e) => setName(e.target.value)} />
-      <label>Animal:</label>
-      <input value={animal} onChange={(e) => setAnimal(e.target.value)} />
-      <label>Breed:</label>
-      <input value={breed} onChange={(e) => setBreed(e.target.value)} />
-      <label>Age:</label>
-      <input value={age} onChange={(e) => setAge(e.target.value)} />
-      <label>Temperament:</label>
+      <input
+        type="text"
+        value={name}
+        onChange={(e) => setName(e.target.value)}
+        placeholder="Name"
+      />
+
+      <select value={animal} onChange={(e) => setAnimal(e.target.value)}>
+        <option value="">Select an animal</option>
+        <option value="cat">Cat</option>
+        <option value="dog">Dog</option>
+        <option value="rabbit">Rabbit</option>
+        <option value="hamster">Hamster</option>
+        <option value="bird">Bird</option>
+      </select>
+      <input
+        type="text"
+        value={breed}
+        onChange={(e) => setBreed(e.target.value)}
+        placeholder="Breed"
+      />
+      <input
+        value={age}
+        onChange={(e) => setAge(e.target.value)}
+        placeholder="Age"
+      />
+
       <input
         value={temperament}
         onChange={(e) => setTemperament(e.target.value)}
+        placeholder="temperament"
       />
-      <label>Picture URL:</label>
-      <input value={image} onChange={(e) => setImage(e.target.value)} />
+      <input
+        value={image}
+        onChange={(e) => setImage(e.target.value)}
+        placeholder="Enter an Image URL"
+      />
       <button type="submit">Add Pet</button>
     </form>
   );
