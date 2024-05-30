@@ -24,16 +24,18 @@ function SeeMorePetCard({ ownerId }) {
     <div>
       <div>
         <h2>{name}</h2>
-        <img src={image} alt={name} />
+        <img src={image} alt={name} className="pet-image" />
       </div>
       <div>
-        <h1>Animal: {animal}</h1>
-        <h1>Breed: {breed}</h1>
-        <h1>Age: {age}</h1>
-        <h1>Temperament: {temperament}</h1>
-        <h1>
-          Visits: <VisitList petId={id} context="pet" />
-        </h1>
+        <h3>Animal:</h3>
+        {animal}
+        <h3>Breed:</h3>
+        {breed}
+        <h3>Age:</h3>
+        {age}
+        <h3>Temperament:</h3>
+        {temperament}
+        <h1>Visits:</h1> <VisitList petId={id} context="pet" />
       </div>
     </div>
   );
