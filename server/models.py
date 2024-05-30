@@ -54,7 +54,37 @@ class Pet(db.Model, SerializerMixin):
         return f'<Pet {self.id}, {self.name}, {self.image}, {self.animal}, {self.breed}, {self.age}, {self.temperament}, Owner: {self.owner_id}>'
 
     serialize_rules = ('-owner.pets', '-visits.pet', '-owner.visits')
-
+    
+    
+    # validates name to be less than 50 // breaking the edit code
+    
+    # @validates('name')
+    # def validate_name(self, key, name):
+    #     if not name:
+    #         raise ValueError("Pet need a name")
+    #     if len(name) > 50:
+    #         raise ValueError("name too big")
+        
+        
+    # validate age to be only numbers
+    
+    # @validates('age')
+    # def validate_age(self, key, age):
+    #     if not str(age).isnumeric():
+    #         raise ValueError("Age must be a number")
+    #     return age
+    
+    # validate to be only cat or dog. not sure if we want to add that ??
+    
+    # @validates('animal')
+    # def validate_animal(self, key, animal):
+    #     animal = animal.lower()
+    #     if animal not in ["dog", "cat"]:
+    #         raise ValueError("Animal must be either 'dog' or 'cat'")
+    #     return animal
+        
+    
+    
 class Sitter(db.Model, SerializerMixin):
     __tablename__ = "sitters"
 
