@@ -1,11 +1,7 @@
 import React, { useState, useEffect } from "react";
 import PetForm from "./PetForm";
-import NavBar from "./NavBar";
-import SeeMorePetCard from "./SeeMorePetCard";
 import PetFormEdit from "./PetFormEdit";
 import { Link } from "react-router-dom";
-
-
 
 function PetsList({ ownerId }) {
   const [pets, setPets] = useState([]);
@@ -23,28 +19,22 @@ function PetsList({ ownerId }) {
     }
   }, [ownerId]);
 
-
-// function to add a pet form is on PetForm
+  // function to add a pet form is on PetForm
   const handleAddPet = (newPet) => {
     setPets([...pets, newPet]);
   };
 
-//function to edit the pet the form is on PetFormEdit
+  //function to edit the pet the form is on PetFormEdit
   const handleEditPet = (updatedPet) => {
     setPets(pets.map((pet) => (pet.id === updatedPet.id ? updatedPet : pet)));
     setEditPet(null);
   };
 
-//function to handle delete
+  //function to handle delete
   const handleDeletePet = (petId) => {
     setPets(pets.filter((pet) => pet.id !== petId));
     fetch(`/pets/${petId}`, { method: "DELETE" }).then(() => {});
   };
-
-
-  // if (showMore) {
-  //   return <SeeMorePetCard petId={showMore} ownerId={ownerId} />;
-  // }
 
   return (
     <div>
@@ -56,7 +46,6 @@ function PetsList({ ownerId }) {
             <p>Animal: {pet.animal}</p>
             <p>Breed: {pet.breed}</p>
             <div className="button-container">
-              {/* <button onClick={() => setShowMore(pet.id)}>See more</button> */}
               <Link to={`/pets/${pet.id}`} className="button-link">
                 View Pet Details
               </Link>

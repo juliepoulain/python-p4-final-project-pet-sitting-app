@@ -25,7 +25,6 @@ function App() {
               <HomepageLogout ownerId={ownerId} setOwnerId={setOwnerId} />
             )}
           </Route>
-
           <Route exact path="/login">
             <Login ownerId={ownerId} setOwnerId={setOwnerId} />
           </Route>
@@ -43,7 +42,6 @@ function App() {
               <Login ownerId={ownerId} setOwnerId={setOwnerId} />
             )}
           </Route>
-
           <Route exact path="/visit/:id">
             {ownerId ? (
               <VisitPage ownerId={ownerId} />
@@ -51,17 +49,12 @@ function App() {
               <Login ownerId={ownerId} setOwnerId={setOwnerId} />
             )}
           </Route>
-
           <Route exact path="/sitters/:id">
-            {ownerId ? (
-              <SitterProfile />
-            ) : (
-              <Login ownerId={ownerId} setOwnerId={setOwnerId} />
-            )}
+            <SitterProfile />
           </Route>
           <Route exact path="/pets">
             {ownerId ? (
-              <PetsList ownerId={ownerId} />
+              <PetsList ownerId={ownerId} setOwnerId={setOwnerId} />
             ) : (
               <Login ownerId={ownerId} setOwnerId={setOwnerId} />
             )}

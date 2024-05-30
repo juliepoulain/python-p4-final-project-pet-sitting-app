@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useHistory } from "react-router-dom";
+import InputMask from "react-input-mask";
 
 function Login({ ownerId, setOwnerId }) {
   const history = useHistory();
@@ -8,7 +9,8 @@ function Login({ ownerId, setOwnerId }) {
 
   function handleSubmit(e) {
     e.preventDefault();
-    fetch(`/owners/phone/${phone}`)
+    const formattedPhone = phone.replace(/\D/g, "");
+    fetch(`/owners/phone/${formattedPhone}`)
       .then((r) => {
         if (!r.ok) {
           throw new Error("Network response was not ok");
@@ -29,14 +31,20 @@ function Login({ ownerId, setOwnerId }) {
 
   return (
     <form onSubmit={handleSubmit}>
-      <input
-        id="phone"
-        name="phone"
-        type="integer"
+      <InputMask
+        mask="(999) 999-9999"
         value={phone}
         onChange={(e) => setPhone(e.target.value)}
-        placeholder="Phone"
-      />
+      >
+        {() => (
+          <input
+            id="phone"
+            name="phone"
+            type="text"
+            placeholder="(123) 456-7890"
+          />
+        )}
+      </InputMask>
       <button type="submit">Login</button>
       {error && <p style={{ color: "red" }}>{error}</p>}
     </form>

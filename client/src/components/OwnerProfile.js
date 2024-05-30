@@ -1,8 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link, NavLink } from "react-router-dom";
-import PetForm from "./PetForm";
 import VisitList from "./VisitList";
-import NavBar from "./NavBar";
 
 function OwnerProfile({ ownerId }) {
   const [owner, setOwner] = useState({});
@@ -10,10 +8,6 @@ function OwnerProfile({ ownerId }) {
   const [sitters, setSitters] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-
-  const handleAddPet = (newPet) => {
-    setPets([...pets, newPet]);
-  };
 
   useEffect(() => {
     fetch(`/owners/${ownerId}`)
@@ -58,13 +52,13 @@ function OwnerProfile({ ownerId }) {
           <li key={index}>{pet.name}</li>
         ))}
       </ul>
-      <br />
+
       <NavLink to={`/pets`} className="nav-link">
         Manage My Pets
       </NavLink>
       <h3>Past Visits</h3>
 
-      <VisitList ownerId={ownerId} />
+      <VisitList ownerId={ownerId} context="owner" />
       <h3>My Past Sitters</h3>
       <ul>
         {sitters.map((sitter) => (
