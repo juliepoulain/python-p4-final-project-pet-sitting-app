@@ -9,7 +9,6 @@ function Homepage({ownerId}) {
 
   return (
     <>
-      <NavBar ownerId={ownerId}/>
       <h1>PetCare</h1>
       <h2>
         Going on a trip? Away for the weekend?
