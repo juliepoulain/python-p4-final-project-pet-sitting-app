@@ -1,12 +1,12 @@
 import { useState } from "react";
 
-function PetForm({ onAddPet }) {
+function PetForm({ ownerId, onAddPet }) {
   const [name, setName] = useState("");
   const [animal, setAnimal] = useState("");
   const [breed, setBreed] = useState("");
   const [age, setAge] = useState("");
   const [temperament, setTemperament] = useState("");
-  const [pictureUrl, setPictureUrl] = useState("");
+  const [image, setImage] = useState("");
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -16,29 +16,35 @@ function PetForm({ onAddPet }) {
       breed,
       age,
       temperament,
-      pictureUrl,
+      image,
+      owner_id: ownerId,
     };
-    onAddPet(newPet);
-    // clear the form
-    setName("");
-    setAnimal("");
-    setBreed("");
-    setAge("");
-    setTemperament("");
-    setPictureUrl("");
+
     fetch("/pets", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(newPet),
-    }).then((r) => {
-      if (r.ok) {
-        r.json().then((newPets) => {
-          onAddPet(newPets);
-        });
-      }
-    });
+    })
+      .then((r) => {
+        if (r.ok) {
+          return r.json();
+        }
+        throw new Error("Failed to add pet");
+      })
+      .then((newPet) => {
+        onAddPet(newPet);
+        setName("");
+        setAnimal("");
+        setBreed("");
+        setAge("");
+        setTemperament("");
+        setImage("");
+      })
+      .catch((error) => {
+        console.error("Error adding pet:", error);
+      });
   }
 
   return (
@@ -88,8 +94,8 @@ function PetForm({ onAddPet }) {
         id="pictureUrl"
         name="pictureUrl"
         type="text"
-        value={pictureUrl}
-        onChange={(e) => setPictureUrl(e.target.value)}
+        value={image}
+        onChange={(e) => setImage(e.target.value)}
       />
       <button type="submit">Add Pet</button>
     </form>
