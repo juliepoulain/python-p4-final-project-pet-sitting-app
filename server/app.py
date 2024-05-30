@@ -45,7 +45,9 @@ class Pets(Resource):
         db.session.add(new_pet)
         db.session.commit()
         return make_response(jsonify(new_pet.to_dict()), 201)
-    
+api.add_resource(Pets, '/pets')
+
+ 
 class PetsById(Resource):
     
     def get(self, id):
@@ -73,7 +75,7 @@ class PetsById(Resource):
         db.session.commit()
         return make_response('', 204)
         
-api.add_resource(Pets, '/pets')
+
 api.add_resource(PetsById, '/pets/<int:id>')
 
 class Owners(Resource):

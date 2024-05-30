@@ -18,9 +18,13 @@ const SitterList = ({ search }) => {
         setLoading(false);
       });
   }, []);
-  const filteredSitters = sitters.filter((sitter) =>
-    sitter.name.toLowerCase().includes(search.toLowerCase())
+
+  const filteredSitters = sitters.filter(
+    (sitter) =>
+      sitter.name.toLowerCase().includes(search.toLowerCase()) ||
+      sitter.address.toLowerCase().includes(search.toLowerCase())
   );
+
   if (loading) {
     return <div>Loading...</div>;
   }

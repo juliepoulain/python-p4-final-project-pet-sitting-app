@@ -29,13 +29,13 @@ function Login({ ownerId, setOwnerId }) {
 
   return (
     <form onSubmit={handleSubmit}>
-      <label htmlFor="phone">Phone:</label>
       <input
         id="phone"
         name="phone"
         type="integer"
         value={phone}
         onChange={(e) => setPhone(e.target.value)}
+        placeholder="Phone"
       />
       <button type="submit">Login</button>
       {error && <p style={{ color: "red" }}>{error}</p>}
