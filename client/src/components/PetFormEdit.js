@@ -52,48 +52,51 @@ function PetFormEdit({ pet, onEditPet }) {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input
-        type="text"
-        value={name}
-        onChange={(e) => setName(e.target.value)}
-        placeholder="Name"
-      />
-      <select value={animal} onChange={(e) => setAnimal(e.target.value)}>
-        <option value="">Select an animal</option>
-        <option value="cat">Cat</option>
-        <option value="dog">Dog</option>
-        <option value="rabbit">Rabbit</option>
-        <option value="hamster">Hamster</option>
-        <option value="bird">Bird</option>
-      </select>
+    <div>
+      <h3>Update {name}'s Information</h3>
+      <form onSubmit={handleSubmit} className="form">
+        <input
+          type="text"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          placeholder="Name"
+        />
+        <select value={animal} onChange={(e) => setAnimal(e.target.value)}>
+          <option value="">Select an animal</option>
+          <option value="cat">Cat</option>
+          <option value="dog">Dog</option>
+          <option value="rabbit">Rabbit</option>
+          <option value="hamster">Hamster</option>
+          <option value="bird">Bird</option>
+        </select>
 
-      <input
-        type="text"
-        value={breed}
-        onChange={(e) => setBreed(e.target.value)}
-        placeholder="Breed"
-      />
-      <input
-        type="text"
-        value={age}
-        onChange={(e) => setAge(e.target.value)}
-        placeholder="Age"
-      />
-      <input
-        type="text"
-        value={temperament}
-        onChange={(e) => setTemperament(e.target.value)}
-        placeholder="Temperament"
-      />
-      <input
-        type="text"
-        value={image}
-        onChange={(e) => setImage(e.target.value)}
-        placeholder="Image URL"
-      />
-      <button type="submit">Update Pet</button>
-    </form>
+        <input
+          type="text"
+          value={breed}
+          onChange={(e) => setBreed(e.target.value)}
+          placeholder="Breed"
+        />
+        <input
+          type="text"
+          value={age}
+          onChange={(e) => setAge(e.target.value)}
+          placeholder="Age"
+        />
+        <input
+          type="text"
+          value={temperament}
+          onChange={(e) => setTemperament(e.target.value)}
+          placeholder="Temperament"
+        />
+        <input
+          type="text"
+          value={image}
+          onChange={(e) => setImage(e.target.value)}
+          placeholder="Image URL"
+        />
+        <button type="submit">Update Pet</button>
+      </form>
+    </div>
   );
 }
 

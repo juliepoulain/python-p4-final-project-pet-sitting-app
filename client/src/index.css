@@ -95,3 +95,10 @@ img {
   max-width: 250px;
   max-height: 160px;
 }
+
+input, select {
+  width: 25%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+}

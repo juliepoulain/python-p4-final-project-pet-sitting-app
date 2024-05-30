@@ -55,7 +55,7 @@ function PetForm({ ownerId, onAddPet }) {
         onChange={(e) => setName(e.target.value)}
         placeholder="Name"
       />
-
+      <br />
       <select value={animal} onChange={(e) => setAnimal(e.target.value)}>
         <option value="">Select an animal</option>
         <option value="cat">Cat</option>
@@ -64,28 +64,32 @@ function PetForm({ ownerId, onAddPet }) {
         <option value="hamster">Hamster</option>
         <option value="bird">Bird</option>
       </select>
+      <br />
       <input
         type="text"
         value={breed}
         onChange={(e) => setBreed(e.target.value)}
         placeholder="Breed"
       />
+      <br />
       <input
         value={age}
         onChange={(e) => setAge(e.target.value)}
         placeholder="Age"
       />
-
+      <br />
       <input
         value={temperament}
         onChange={(e) => setTemperament(e.target.value)}
         placeholder="temperament"
       />
+      <br />
       <input
         value={image}
         onChange={(e) => setImage(e.target.value)}
         placeholder="Enter an Image URL"
       />
+      <br />
       <button type="submit">Add Pet</button>
     </form>
   );
