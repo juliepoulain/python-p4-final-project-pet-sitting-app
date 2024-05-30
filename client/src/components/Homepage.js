@@ -8,6 +8,7 @@ function Homepage({ ownerId }) {
 
   return (
     <>
+    <div className="welcome">
       <h1>PetCare</h1>
       <h2>
         Going on a trip? Away for the weekend?
@@ -19,9 +20,11 @@ function Homepage({ ownerId }) {
         above and beyond the old "feed & leave" so you can be rest assured your
         pets will feel loved and cared for while their favorite human is away!
       </h3>
-      <h3>Find a sitter near you today:</h3>
+      
+      <h2>Our Sitters:</h2>
       <SitterSearch setSearch={setSearch} />
       <SitterList search={search} />
+      </div>
     </>
   );
 }

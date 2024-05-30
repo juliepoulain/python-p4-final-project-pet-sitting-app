@@ -3,7 +3,8 @@ import { NavLink } from "react-router-dom";
 
 function NavBar({ ownerId }) {
   return (
-    <nav className="navbar">
+    <div className="navbar">
+    <nav>
       <NavLink to="/" className="nav-link">
         Home
       </NavLink>
@@ -23,6 +24,7 @@ function NavBar({ ownerId }) {
         Log Out
       </NavLink>
     </nav>
+    </div>
   );
 }
 
