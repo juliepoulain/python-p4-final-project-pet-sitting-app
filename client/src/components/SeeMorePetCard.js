@@ -1,37 +1,28 @@
 import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import NavBar from "./NavBar";
 
-function SeeMorePetCard({ petId }) {
+function SeeMorePetCard({ petId, ownerId }) {
+  const { id } = useParams(); // Correctly destructure useParams
   const [pet, setPet] = useState(null);
 
   useEffect(() => {
-    if (!petId) {
-      console.error("petId is undefined");
-      return;
-    }
-
-    console.log(`Fetching pet with id: ${petId}`); // Debugging statement
     fetch(`http://localhost:5555/pets/${petId}`)
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Failed to fetch pet");
-        }
-        return response.json();
-      })
+      .then((response) => response.json())
       .then((data) => {
-        console.log("Pet fetched:", data); // Debugging statement
         setPet(data);
-      })
-      .catch((error) => console.error("Error fetching pet:", error));
-  }, [petId]);
+      });
+  }, [petId]); // Use petId in the dependency array
 
   if (!pet) {
     return <div>Loading...</div>;
   }
 
-  const { name, animal, image, breed, age, temperament } = pet;
+  const { name, image, animal, breed, age, temperament } = pet; // Destructure pet properties
 
   return (
-    <li className="see-more-card">
+    <div>
+      <NavBar ownerId={ownerId} />
       <div>
         <h2>{name}</h2>
         <img src={image} alt={name} />
@@ -43,7 +34,7 @@ function SeeMorePetCard({ petId }) {
         <h1>Temperament: {temperament}</h1>
         <h1>Visits: </h1>
       </div>
-    </li>
+    </div>
   );
 }
 
