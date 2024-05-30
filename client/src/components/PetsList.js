@@ -41,10 +41,9 @@ function PetsList({ ownerId }) {
       <h1>My Pets</h1>
       <ul>
         {pets.map((pet) => (
-          <li key={pet.id}>
-            <p>Name: {pet.name}</p>
-            <p>Animal: {pet.animal}</p>
-            <p>Breed: {pet.breed}</p>
+          <li key={pet.id} className="pet-card">
+            <h3>{pet.name}</h3>
+            <img src={pet.image} alt={pet.name} className="pet-image"/>
             <div className="button-container">
               <Link to={`/pets/${pet.id}`} className="button-link">
                 View Pet Details
