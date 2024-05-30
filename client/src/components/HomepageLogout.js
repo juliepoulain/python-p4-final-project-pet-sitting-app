@@ -21,10 +21,10 @@ function HomepageLogout({ ownerId, setOwnerId }) {
           your pets will feel loved and cared for while their favorite human is
           away!
         </h3>
-      </div>
       <h2>Our Sitters:</h2>
       <SitterSearch setSearch={setSearch} />
       <SitterList search={search} />
+      </div>
     </>
   );
 }
