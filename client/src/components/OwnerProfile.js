@@ -52,7 +52,7 @@ function OwnerProfile({ ownerId }) {
           <li key={index}>{pet.name}</li>
         ))}
       </ul>
-
+<br />
       <NavLink to={`/pets`} className="nav-link">
         Manage My Pets
       </NavLink>
