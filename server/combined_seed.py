@@ -99,7 +99,11 @@ with app.app_context():
     visitA = Visit(visit_notes="notesA", sitter_id=sitters[0].id, pet_id=garfield.id, owner_id=julie.id, date=date(2024, 7, 2), check_in_time=time(14, 27))
     visitB = Visit(visit_notes="notesB", sitter_id=sitters[0].id, pet_id=garfield.id, owner_id=julie.id, date=date(2024, 2, 1), check_in_time=time(12, 12))
     visitC = Visit(visit_notes="notesC", sitter_id=sitters[1].id, pet_id=rose.id, owner_id=billy.id, date=date(2024, 5, 27), check_in_time=time(15, 32))
-    visits = [visitA, visitB, visitC]
+    visitD = Visit(visit_notes="notesD", sitter_id=sitters[2].id, pet_id=buddy.id, owner_id=billy.id, date=date(2024, 6, 15), check_in_time=time(10, 15))
+    visitE = Visit(visit_notes="notesE", sitter_id=sitters[3].id, pet_id=rose.id, owner_id=billy.id, date=date(2024, 8, 10), check_in_time=time(9, 45))
+    visitF = Visit(visit_notes="notesF", sitter_id=sitters[4].id, pet_id=buddy.id, owner_id=billy.id, date=date(2024, 9, 20), check_in_time=time(11, 30))
+    visitG = Visit(visit_notes="notesG", sitter_id=sitters[5].id, pet_id=garfield.id, owner_id=julie.id, date=date(2024, 10, 5), check_in_time=time(14, 0))
+    visits = [visitA, visitB, visitC, visitD, visitE, visitF, visitG]
     db.session.add_all(visits)
     db.session.commit()
 
