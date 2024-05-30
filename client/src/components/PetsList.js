@@ -48,7 +48,7 @@ function PetsList({ ownerId }) {
 
   return (
     <div>
-      <h1>Pets List</h1>
+      <h1>My Pets</h1>
       <ul>
         {pets.map((pet) => (
           <li key={pet.id}>
