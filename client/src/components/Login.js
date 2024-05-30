@@ -4,16 +4,27 @@ import { useHistory } from "react-router-dom";
 function Login({ ownerId, setOwnerId }) {
   const history = useHistory();
   const [phone, setPhone] = useState("");
+  const [error, setError] = useState(null);
 
   function handleSubmit(e) {
     e.preventDefault();
     fetch(`/owners/phone/${phone}`)
-      .then((r) => r.json())
+      .then((r) => {
+        if (!r.ok) {
+          throw new Error("Network response was not ok");
+        }
+        return r.json();
+      })
       .then((data) => {
-          setOwnerId(data.id);
-          history.push(`/`);
-        })
-    console.log(ownerId);
+        setOwnerId(data.id);
+        history.push(`/`);
+      })
+      .catch((error) => {
+        setError(
+          "Failed to log in. Please check your phone number and try again."
+        );
+        console.error("Error logging in:", error);
+      });
   }
 
   return (
@@ -27,6 +38,7 @@ function Login({ ownerId, setOwnerId }) {
         onChange={(e) => setPhone(e.target.value)}
       />
       <button type="submit">Login</button>
+      {error && <p style={{ color: "red" }}>{error}</p>}
     </form>
   );
 }
