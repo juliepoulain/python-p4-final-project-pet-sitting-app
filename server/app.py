@@ -47,6 +47,9 @@ class Pets(Resource):
         return make_response(jsonify(new_pet.to_dict()), 201)
 api.add_resource(Pets, '/pets')
 
+
+
+
  
 class PetsById(Resource):
     
