@@ -3,11 +3,14 @@ import { Link } from "react-router-dom";
 import PetForm from "./PetForm";
 import NavBar from "./NavBar";
 import SeeMorePetCard from "./SeeMorePetCard";
+import PetFormEdit from "./PetFormEdit";
 
 function PetsList({ ownerId }) {
   const [pets, setPets] = useState([]);
   const [showMore, setShowMore] = useState(null);
+  const [editPet, setEditPet] = useState(null);
 
+  // Initial fetch to get pets by the owner
   useEffect(() => {
     if (ownerId) {
       fetch(`/owners/${ownerId}`)
@@ -20,6 +23,11 @@ function PetsList({ ownerId }) {
 
   const handleAddPet = (newPet) => {
     setPets([...pets, newPet]);
+  };
+
+  const handleEditPet = (updatedPet) => {
+    setPets(pets.map((pet) => (pet.id === updatedPet.id ? updatedPet : pet)));
+    setEditPet(null);
   };
 
   const handleDeletePet = (petId) => {
@@ -43,11 +51,13 @@ function PetsList({ ownerId }) {
             <p>Breed: {pet.breed}</p>
             <div className="button-container">
               <button onClick={() => setShowMore(pet.id)}>See more</button>
+              <button onClick={() => setEditPet(pet)}>Edit</button>
               <button onClick={() => handleDeletePet(pet.id)}>Delete</button>
             </div>
           </li>
         ))}
       </ul>
+      {editPet && <PetFormEdit onEditPet={handleEditPet} pet={editPet} />}
       <PetForm onAddPet={handleAddPet} ownerId={ownerId} />
     </div>
   );
