@@ -67,6 +67,7 @@ function PetsList({ ownerId }) {
         ))}
       </ul>
       {editPet && <PetFormEdit onEditPet={handleEditPet} pet={editPet} />}
+      <h3>Add Pets:</h3>
       <PetForm onAddPet={handleAddPet} ownerId={ownerId} />
     </div>
   );
