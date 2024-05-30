@@ -3,10 +3,12 @@ import { NavLink } from "react-router-dom";
 
 function NavBar({ ownerId }) {
   return (
+
     <nav className="navbar">
       <div className="nav-links-container">
         <NavLink to="/" exact className="nav-link" activeClassName="active">
           Home
+
         </NavLink>
         {ownerId ? (
           <NavLink to="/pets" className="nav-link" activeClassName="active">
@@ -29,6 +31,7 @@ function NavBar({ ownerId }) {
         </NavLink>
       </div>
     </nav>
+    </div>
   );
 }
 

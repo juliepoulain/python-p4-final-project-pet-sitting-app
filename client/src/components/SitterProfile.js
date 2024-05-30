@@ -39,7 +39,7 @@ const SitterProfile = ({ ownerId }) => {
       <h2>Sitter Profile</h2>
       <div>
         <p>Name: {sitter.name}</p>
-        <img src={sitter.image} alt={sitter.name} />
+        <img src={sitter.image} alt={sitter.name} className="sitter-image"/>
         <p>{sitter.bio}</p>
         <p>Experience: {sitter.experience} years</p>
         <p>Phone: {sitter.phone}</p>
@@ -49,24 +49,26 @@ const SitterProfile = ({ ownerId }) => {
       </div>
 
       {showBookingForm && (
-        <form onSubmit={handleBookingSubmit}>
+        <form onSubmit={handleBookingSubmit} className="form">
           <h3>Book Sitter</h3>
           <label>
-            Dates Needed:
             <input
+              placeholder="Dates Needed"
               type="text"
               value={datesNeeded}
               onChange={(e) => setDatesNeeded(e.target.value)}
             />
           </label>
+          <br />
           <label>
-            Pet Name:
             <input
+              placeholder="Message to sitter"
               type="text"
               value={petName}
               onChange={(e) => setPetName(e.target.value)}
             />
           </label>
+          <br />
           <button type="submit">Send Booking Request</button>
           <button type="button" onClick={() => setShowBookingForm(false)}>
             Cancel
