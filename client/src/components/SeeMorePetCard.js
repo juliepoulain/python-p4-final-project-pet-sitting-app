@@ -4,6 +4,12 @@ function SeeMorePetCard({ petId }) {
   const [pet, setPet] = useState(null);
 
   useEffect(() => {
+    if (!petId) {
+      console.error("petId is undefined");
+      return;
+    }
+
+    console.log(`Fetching pet with id: ${petId}`); // Debugging statement
     fetch(`http://localhost:5555/pets/${petId}`)
       .then((response) => {
         if (!response.ok) {
@@ -11,7 +17,10 @@ function SeeMorePetCard({ petId }) {
         }
         return response.json();
       })
-      .then((data) => setPet(data))
+      .then((data) => {
+        console.log("Pet fetched:", data); // Debugging statement
+        setPet(data);
+      })
       .catch((error) => console.error("Error fetching pet:", error));
   }, [petId]);
 
@@ -37,4 +46,5 @@ function SeeMorePetCard({ petId }) {
     </li>
   );
 }
+
 export default SeeMorePetCard;

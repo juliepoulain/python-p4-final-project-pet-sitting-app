@@ -8,7 +8,7 @@ function NavBar({ ownerId }) {
         Home
       </NavLink>
       {ownerId ? (
-        <NavLink to={`/pets/${ownerId}`} className="nav-link">
+        <NavLink to={`/pets`} className="nav-link">
           Pets
         </NavLink>
       ) : (

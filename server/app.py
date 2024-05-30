@@ -39,7 +39,8 @@ class Pets(Resource):
             breed=data['breed'],
             age=data['age'],
             temperament=data['temperament'],
-            image=data['image']
+            image=data['image'],
+            owner_id=data['owner_id']
         )
         db.session.add(new_pet)
         db.session.commit()
@@ -48,8 +49,10 @@ class Pets(Resource):
 class PetsById(Resource):
     
     def get(self, id):
+        print(f'Fetching pet with id: {id}')
         pet = Pet.query.get(id)
         if pet is None:
+            print("pet not found")
             return make_response(jsonify(error='Pet not found'), 404)
         return make_response(jsonify(pet.to_dict()), 200)
     

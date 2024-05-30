@@ -1,33 +1,28 @@
 import { useState, useEffect } from "react";
-import PetForm from "./PetForm";
 import VisitList from "./VisitList";
-import NavBar from "./NavBar"
+import NavBar from "./NavBar";
 
-function OwnerProfile({ownerId}) {
+function OwnerProfile({ ownerId }) {
   const [pets, setPets] = useState([]);
-  const [owner, setOwner] = useState({})
-
-  const handleAddPet = (newPet) => {
-    setPets([...pets, newPet]);
-  };
+  const [owner, setOwner] = useState({});
 
   useEffect(() => {
     fetch(`/owners/${ownerId}`)
       .then((r) => r.json())
       .then((data) => {
-        setOwner(data)
-      })
+        setOwner(data);
+      });
   }, []);
 
   return (
     <div>
-      <NavBar ownerId={ownerId}/>
+      <NavBar ownerId={ownerId} />
       <h2>Owner Profile</h2>
-        <p>Name: {owner.name}</p>
-        <p>Email: {owner.email}</p>
-        <p>Phone Number: {owner.phone}</p>
-        <p>Address: {owner.address}</p>
-      <PetForm onAddPet={handleAddPet} />
+      <p>Name: {owner.name}</p>
+      <p>Email: {owner.email}</p>
+      <p>Phone Number: {owner.phone}</p>
+      <p>Address: {owner.address}</p>
+
       {/* fetch the pets to display we need to have the pets card */}
       <h3>Pets</h3>
       <ul>
@@ -36,9 +31,9 @@ function OwnerProfile({ownerId}) {
         ))}
       </ul>
       <h3>Visits</h3>
-      <VisitList ownerId={ownerId}/>
+      <VisitList ownerId={ownerId} />
     </div>
-  )
+  );
 }
 
-export default OwnerProfile
+export default OwnerProfile;

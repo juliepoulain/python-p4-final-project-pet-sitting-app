@@ -23,7 +23,7 @@ function App() {
           </Route>
 
           <Route exact path="/visit/:id">
-            <VisitPage ownerId={ownerId}/>
+            <VisitPage ownerId={ownerId} />
           </Route>
           <Route exact path="/login">
             <Login ownerId={ownerId} setOwnerId={setOwnerId} />
@@ -31,14 +31,12 @@ function App() {
           <Route exact path="/sitter/:id">
             <SitterProfile />
           </Route>
-          <Route exact path="/pets/:ownerId">
-            <PetsList />
+          <Route exact path="/pets">
+            <PetsList ownerId={ownerId} />
           </Route>
           <Route exact path="/pets/:id">
-            <SeeMorePetCard />
+            <SeeMorePetCard ownerId={ownerId} />
           </Route>
-
-          {/* here is where we should add more routes (home, pets, etc) */}
         </Switch>
       </div>
     </Router>
