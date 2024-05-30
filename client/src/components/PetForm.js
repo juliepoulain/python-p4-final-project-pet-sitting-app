@@ -49,54 +49,21 @@ function PetForm({ ownerId, onAddPet }) {
 
   return (
     <form onSubmit={handleSubmit}>
-      <label htmlFor="name">Name:</label>
+      <label>Name:</label>
+      <input value={name} onChange={(e) => setName(e.target.value)} />
+      <label>Animal:</label>
+      <input value={animal} onChange={(e) => setAnimal(e.target.value)} />
+      <label>Breed:</label>
+      <input value={breed} onChange={(e) => setBreed(e.target.value)} />
+      <label>Age:</label>
+      <input value={age} onChange={(e) => setAge(e.target.value)} />
+      <label>Temperament:</label>
       <input
-        id="name"
-        name="name"
-        type="text"
-        value={name}
-        onChange={(e) => setName(e.target.value)}
-      />
-      <label htmlFor="animal">Animal:</label>
-      <input
-        id="animal"
-        name="animal"
-        type="text"
-        value={animal}
-        onChange={(e) => setAnimal(e.target.value)}
-      />
-      <label htmlFor="breed">Breed:</label>
-      <input
-        id="breed"
-        name="breed"
-        type="text"
-        value={breed}
-        onChange={(e) => setBreed(e.target.value)}
-      />
-      <label htmlFor="age">Age:</label>
-      <input
-        id="age"
-        name="age"
-        type="number"
-        value={age}
-        onChange={(e) => setAge(e.target.value)}
-      />
-      <label htmlFor="temperament">Temperament:</label>
-      <input
-        id="temperament"
-        name="temperament"
-        type="text"
         value={temperament}
         onChange={(e) => setTemperament(e.target.value)}
       />
-      <label htmlFor="pictureUrl">Picture URL:</label>
-      <input
-        id="pictureUrl"
-        name="pictureUrl"
-        type="text"
-        value={image}
-        onChange={(e) => setImage(e.target.value)}
-      />
+      <label>Picture URL:</label>
+      <input value={image} onChange={(e) => setImage(e.target.value)} />
       <button type="submit">Add Pet</button>
     </form>
   );
