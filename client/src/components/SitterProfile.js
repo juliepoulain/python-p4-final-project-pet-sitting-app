@@ -3,19 +3,32 @@ import { useParams } from "react-router-dom";
 import NavBar from "./NavBar";
 
 const SitterProfile = ({ ownerId }) => {
-  console.log("SitterProfile component mounted");
   const { id } = useParams();
   const [sitter, setSitter] = useState(null);
+  const [showBookingForm, setShowBookingForm] = useState(false);
+  const [datesNeeded, setDatesNeeded] = useState("");
+  const [petName, setPetName] = useState("");
+  const [successMessage, setSuccessMessage] = useState("");
 
   useEffect(() => {
-    console.log("Fetching sitter with ID:", id);
     fetch(`http://localhost:5555/sitters/${id}`)
       .then((r) => r.json())
       .then((data) => {
         setSitter(data);
-        console.log("Fetched sitter data:", data);
       });
   }, [id]);
+
+  const handleBookingSubmit = (e) => {
+    e.preventDefault();
+    console.log("Booking request sent to:", sitter.email);
+    console.log("Dates Needed:", datesNeeded);
+    console.log("Pet Name:", petName);
+    setShowBookingForm(false);
+    setDatesNeeded("");
+    setPetName("");
+    setSuccessMessage("Booking request sent successfully!");
+    setTimeout(() => setSuccessMessage(""), 5000);
+  };
 
   if (!sitter) {
     return <div>Loading...</div>;
@@ -32,7 +45,36 @@ const SitterProfile = ({ ownerId }) => {
         <p>Phone: {sitter.phone}</p>
         <p>Address: {sitter.address}</p>
         <p>Email: {sitter.email}</p>
+        <button onClick={() => setShowBookingForm(true)}>Book Sitter</button>
       </div>
+
+      {showBookingForm && (
+        <form onSubmit={handleBookingSubmit}>
+          <h3>Book Sitter</h3>
+          <label>
+            Dates Needed:
+            <input
+              type="text"
+              value={datesNeeded}
+              onChange={(e) => setDatesNeeded(e.target.value)}
+            />
+          </label>
+          <label>
+            Pet Name:
+            <input
+              type="text"
+              value={petName}
+              onChange={(e) => setPetName(e.target.value)}
+            />
+          </label>
+          <button type="submit">Send Booking Request</button>
+          <button type="button" onClick={() => setShowBookingForm(false)}>
+            Cancel
+          </button>
+        </form>
+      )}
+
+      {successMessage && <p style={{ color: "green" }}>{successMessage}</p>}
     </div>
   );
 };

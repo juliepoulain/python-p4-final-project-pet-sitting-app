@@ -8,39 +8,68 @@ import SeeMorePetCard from "./SeeMorePetCard";
 import Login from "./Login";
 import SitterProfile from "./SitterProfile";
 import NavBar from "./NavBar"
+import HomepageLogout from "./HomepageLogout";
 
 function App() {
   const [ownerId, setOwnerId] = useState("");
 
   return (
-      <Router>
-        <NavBar ownerId={ownerId}/>
-        <div className="wrapper">
-          <Switch>
-            <Route exact path="/owner/:id">
-              <OwnerProfile ownerId={ownerId} setOwnerId={setOwnerId} />
-            </Route>
-            <Route exact path="/">
+    <Router>
+      <NavBar ownerId={ownerId}/>
+      <div className="wrapper">
+        <Switch>
+          <Route exact path="/">
+            {ownerId ? (
               <Homepage ownerId={ownerId} />
-            </Route>
-            <Route exact path="/visit/:id">
-              <VisitPage ownerId={ownerId} />
-            </Route>
-            <Route exact path="/login">
+            ) : (
+              <HomepageLogout ownerId={ownerId} setOwnerId={setOwnerId} />
+            )}
+          </Route>
+
+          <Route exact path="/login">
+            <Login ownerId={ownerId} setOwnerId={setOwnerId} />
+          </Route>
+
+          <Route exact path="/owner/:id">
+            {ownerId ? (
+              <OwnerProfile ownerId={ownerId} setOwnerId={setOwnerId} />
+            ) : (
               <Login ownerId={ownerId} setOwnerId={setOwnerId} />
-            </Route>
-            <Route exact path="/sitters/:id">
+            )}
+          </Route>
+
+          <Route exact path="/visit/:id">
+            {ownerId ? (
+              <VisitPage ownerId={ownerId} />
+            ) : (
+              <Login ownerId={ownerId} setOwnerId={setOwnerId} />
+            )}
+          </Route>
+
+          <Route exact path="/sitters/:id">
+            {ownerId ? (
               <SitterProfile />
-            </Route>
-            <Route exact path="/pets">
+            ) : (
+              <Login ownerId={ownerId} setOwnerId={setOwnerId} />
+            )}
+          </Route>
+          <Route exact path="/pets">
+            {ownerId ? (
               <PetsList ownerId={ownerId} />
-            </Route>
-            <Route exact path="/pets/:id">
+            ) : (
+              <Login ownerId={ownerId} setOwnerId={setOwnerId} />
+            )}
+          </Route>
+          <Route exact path="/pets/:id">
+            {ownerId ? (
               <SeeMorePetCard ownerId={ownerId} />
-            </Route>
-          </Switch>
-        </div>
-      </Router>
+            ) : (
+              <Login ownerId={ownerId} setOwnerId={setOwnerId} />
+            )}
+          </Route>
+        </Switch>
+      </div>
+    </Router>
   );
 }
 
