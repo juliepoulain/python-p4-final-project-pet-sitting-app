@@ -5,7 +5,6 @@ import Login from "./Login";
 
 function HomepageLogout({ ownerId, setOwnerId }) {
   const [search, setSearch] = useState("");
-  const [sitters, setSitters] = useState([]);
 
   return (
     <>
@@ -22,8 +21,8 @@ function HomepageLogout({ ownerId, setOwnerId }) {
         pets will feel loved and cared for while their favorite human is away!
       </h3>
       <h3>Find a sitter near you today:</h3>
-      <SitterSearch />
-      <SitterList />
+      <SitterSearch setSearch={setSearch} />
+      <SitterList search={search} />
     </>
   );
 }

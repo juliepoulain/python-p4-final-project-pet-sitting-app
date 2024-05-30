@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
-const SitterList = () => {
+const SitterList = ({ search }) => {
   const [sitters, setSitters] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -18,7 +18,9 @@ const SitterList = () => {
         setLoading(false);
       });
   }, []);
-
+  const filteredSitters = sitters.filter((sitter) =>
+    sitter.name.toLowerCase().includes(search.toLowerCase())
+  );
   if (loading) {
     return <div>Loading...</div>;
   }
@@ -31,7 +33,7 @@ const SitterList = () => {
     <div>
       <h1>Sitters</h1>
       <ul>
-        {sitters.map((sitter) => (
+        {filteredSitters.map((sitter) => (
           <li key={sitter.id}>
             <Link to={`/sitters/${sitter.id}`}>{sitter.name}</Link>
           </li>

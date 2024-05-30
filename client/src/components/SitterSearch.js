@@ -1,15 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
 
-function SitterSearch({ search, setSearch }) {
+function SitterSearch({ setSearch }) {
+  const [searchTerm, setSearchTerm] = useState("");
+
+  function handleChange(e) {
+    const value = e.target.value;
+    setSearchTerm(value);
+    setSearch(value);
+  }
+
   return (
     <div className="searchbar">
-      <label htmlFor="search">Search Sitters:</label>
       <input
         type="text"
         id="search"
-        placeholder="Type a city or name to search..."
-        value={search}
-        onChange={(e) => setSearch(e.target.value)}
+        placeholder="Search for sitter near you"
+        value={searchTerm}
+        onChange={handleChange}
       />
     </div>
   );

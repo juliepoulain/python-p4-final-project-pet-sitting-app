@@ -5,7 +5,6 @@ import VisitList from "./VisitList";
 import NavBar from "./NavBar";
 
 function OwnerProfile({ ownerId }) {
-
   const [owner, setOwner] = useState({});
   const [pets, setPets] = useState([]);
   const [sitters, setSitters] = useState([]);
@@ -15,7 +14,6 @@ function OwnerProfile({ ownerId }) {
   const handleAddPet = (newPet) => {
     setPets([...pets, newPet]);
   };
-
 
   useEffect(() => {
     fetch(`/owners/${ownerId}`)
@@ -54,8 +52,6 @@ function OwnerProfile({ ownerId }) {
       <p>Phone Number: {owner.phone}</p>
       <p>Address: {owner.address}</p>
 
-      <PetForm onAddPet={handleAddPet} />
-
       <h3>Pets</h3>
       <ul>
         {pets.map((pet, index) => (
@@ -63,7 +59,6 @@ function OwnerProfile({ ownerId }) {
         ))}
       </ul>
       <h3>Visits</h3>
-
 
       <VisitList ownerId={ownerId} />
       <h3>Associated Sitters</h3>
