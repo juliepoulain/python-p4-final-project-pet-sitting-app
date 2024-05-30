@@ -23,7 +23,6 @@ const SitterProfile = ({ ownerId }) => {
 
   return (
     <div>
-      <NavBar ownerId={ownerId} />
       <h2>Sitter Profile</h2>
       <div>
         <p>Name: {sitter.name}</p>
