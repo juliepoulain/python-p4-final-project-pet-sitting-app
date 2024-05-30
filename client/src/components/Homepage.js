@@ -1,11 +1,10 @@
 import SitterSearch from "./SitterSearch";
 import SitterList from "./SitterList";
-import React, { useState } from "react";
-import NavBar from "./NavBar"
+import React, { useEffect, useState } from "react";
+import NavBar from "./NavBar";
 
-function Homepage({ownerId}) {
+function Homepage({ ownerId }) {
   const [search, setSearch] = useState("");
-  const [sitters, setSitters] = useState([]);
 
   return (
     <>
@@ -17,13 +16,12 @@ function Homepage({ownerId}) {
       </h2>
       <h3>
         Our sitters are the best in the game. At PetCare, we believe in going
-        above and beyond the old "feed & leave" so you can be rest assured
-        your pets will feel loved and cared for while their favorite human is
-        away!
+        above and beyond the old "feed & leave" so you can be rest assured your
+        pets will feel loved and cared for while their favorite human is away!
       </h3>
       <h3>Find a sitter near you today:</h3>
-      <SitterSearch />
-      <SitterList />
+      <SitterSearch setSearch={setSearch} />
+      <SitterList search={search} />
     </>
   );
 }
