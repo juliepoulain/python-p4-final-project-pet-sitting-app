@@ -7,7 +7,7 @@ import PetsList from "./PetsList";
 import SeeMorePetCard from "./SeeMorePetCard";
 import Login from "./Login";
 import SitterProfile from "./SitterProfile";
-import NavBar from "./NavBar"
+import NavBar from "./NavBar";
 import HomepageLogout from "./HomepageLogout";
 
 function App() {
@@ -15,7 +15,7 @@ function App() {
 
   return (
     <Router>
-      <NavBar ownerId={ownerId}/>
+      <NavBar ownerId={ownerId} />
       <div className="wrapper">
         <Switch>
           <Route exact path="/">
@@ -29,7 +29,13 @@ function App() {
           <Route exact path="/login">
             <Login ownerId={ownerId} setOwnerId={setOwnerId} />
           </Route>
-
+          <Route exact path="/owner">
+            {ownerId ? (
+              <OwnerProfile ownerId={ownerId} setOwnerId={setOwnerId} />
+            ) : (
+              <Login ownerId={ownerId} setOwnerId={setOwnerId} />
+            )}
+          </Route>
           <Route exact path="/owner/:id">
             {ownerId ? (
               <OwnerProfile ownerId={ownerId} setOwnerId={setOwnerId} />
