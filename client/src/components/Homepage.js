@@ -25,7 +25,6 @@ function HomepageLogout({ ownerId, setOwnerId }) {
           </div>
           <img src={homeImage} className="home-image" alt="Home" />
         </div>
-
         <h2>Our Sitters:</h2>
         <SitterSearch setSearch={setSearch} />
         <SitterList search={search} />

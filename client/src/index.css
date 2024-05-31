@@ -288,29 +288,13 @@ form button:hover {
   background-color: rgb(42, 44, 52);
 }
 
-.wrapper-owner {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  max-width: 800px;
-  padding: 20px;
-}
-
 .profile-info,
 .pets-owner,
 .visits-owner,
 .past-sitter {
   width: 100%;
   margin-bottom: 20px;
-}
-
-.profile-info h2,
-.pets-owner h3,
-.visits-owner h3,
-.past-sitter h3 {
-  text-align: center;
+  text-align: center
 }
 
 .pets-owner ul,
@@ -356,4 +340,8 @@ form button:hover {
 .visit-profile-container h2,
 .visit-profile-container p {
   margin: 10px 0;
+}
+
+.homepage {
+  text-align: center
 }

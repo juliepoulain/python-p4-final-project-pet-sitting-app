@@ -38,7 +38,7 @@ function OwnerProfile({ ownerId }) {
   }
 
   return (
-    <div className="wrapper-owner">
+    <div>
       <div className="profile-info">
         <h2>My Profile</h2>
         <p>Name: {owner.name}</p>
@@ -53,7 +53,7 @@ function OwnerProfile({ ownerId }) {
             <li key={index}>{pet.name}</li>
           ))}
         </ul>
-
+        <br />
         <NavLink to="/pets" className="nav-link">
           Manage My Pets
         </NavLink>
@@ -74,7 +74,6 @@ function OwnerProfile({ ownerId }) {
           ))}
         </ul>
       </div>
-
     </div>
   );
 }
