@@ -40,11 +40,13 @@ function OwnerProfile({ ownerId }) {
   return (
     <div>
       <div className="profile-info">
+        <div className="card">
         <h2>My Profile</h2>
         <p>Name: {owner.name}</p>
         <p>Email: {owner.email}</p>
         <p>Phone Number: {owner.phone}</p>
         <p>Address: {owner.address}</p>
+        </div>
       </div>
       <div className="pets-owner">
         <h3>My Pets</h3>

@@ -132,7 +132,6 @@ select {
 .pet-card,
 .sitter-card {
   background-color: rgb(163, 203, 215);
-  max-width: 250px;
   padding-top: 2px;
   padding-bottom: 10px;
   padding-left: 10px;
