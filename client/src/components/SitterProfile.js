@@ -35,11 +35,11 @@ const SitterProfile = ({ ownerId }) => {
   }
 
   return (
-    <div>
+    <div className="sitter-profile-container">
       <h2>Sitter Profile</h2>
       <div>
         <p>Name: {sitter.name}</p>
-        <img src={sitter.image} alt={sitter.name} className="sitter-image"/>
+        <img src={sitter.image} alt={sitter.name} className="sitter-image" />
         <p>{sitter.bio}</p>
         <p>Experience: {sitter.experience} years</p>
         <p>Phone: {sitter.phone}</p>

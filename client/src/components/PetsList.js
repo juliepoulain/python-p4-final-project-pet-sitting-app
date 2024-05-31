@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 
 function PetsList({ ownerId }) {
   const [pets, setPets] = useState([]);
-  // const [showMore, setShowMore] = useState(null);
   const [editPet, setEditPet] = useState(null);
 
   // Initial fetch to get pets by the owner
@@ -37,13 +36,13 @@ function PetsList({ ownerId }) {
   };
 
   return (
-    <div>
+    <div className="pets-container">
       <h1>My Pets</h1>
-      <ul>
+      <div className="pets-list">
         {pets.map((pet) => (
-          <li key={pet.id} className="pet-card">
+          <div key={pet.id} className="pet-card">
             <h3>{pet.name}</h3>
-            <img src={pet.image} alt={pet.name} className="pet-image"/>
+            <img src={pet.image} alt={pet.name} className="pet-image" />
             <div className="button-container">
               <Link to={`/pets/${pet.id}`} className="button-link">
                 View Pet Details
@@ -51,9 +50,9 @@ function PetsList({ ownerId }) {
               <button onClick={() => setEditPet(pet)}>Edit</button>
               <button onClick={() => handleDeletePet(pet.id)}>Delete</button>
             </div>
-          </li>
+          </div>
         ))}
-      </ul>
+      </div>
       {editPet && <PetFormEdit onEditPet={handleEditPet} pet={editPet} />}
       <h3>Add Pets:</h3>
       <PetForm onAddPet={handleAddPet} ownerId={ownerId} />

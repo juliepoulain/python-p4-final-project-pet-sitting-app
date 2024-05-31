@@ -5,6 +5,7 @@ import VisitList from "./VisitList";
 function SeeMorePetCard({ ownerId }) {
   const { id } = useParams();
   const [pet, setPet] = useState(null);
+  const [showVisits, setShowVisits] = useState(false);
 
   useEffect(() => {
     fetch(`http://localhost:5555/pets/${id}`)
@@ -21,21 +22,26 @@ function SeeMorePetCard({ ownerId }) {
   const { name, image, animal, breed, age, temperament } = pet;
 
   return (
-    <div>
+    <div className="see-more-pet-card-container">
       <div>
-        <h2>{name}</h2>
-        <img src={image} alt={name} className="pet-image" />
+
+        <h1>{name}</h1>
+        <img src={image} alt={name} />
       </div>
       <div>
-        <h3>Animal:</h3>
-        {animal}
-        <h3>Breed:</h3>
-        {breed}
-        <h3>Age:</h3>
-        {age}
-        <h3>Temperament:</h3>
-        {temperament}
-        <h1>Visits:</h1> <VisitList petId={id} context="pet" />
+        <h3>Animal: {animal}</h3>
+        <h3>Breed: {breed}</h3>
+        <h3>Age: {age}</h3>
+        <h3>Temperament: {temperament}</h3>
+        <button onClick={() => setShowVisits(!showVisits)}>
+          {showVisits ? "Hide Visits" : "Show Visits"}
+        </button>
+        {showVisits && (
+          <div className="visits-container">
+            <VisitList petId={id} context="pet" />
+          </div>
+        )}
+
       </div>
     </div>
   );

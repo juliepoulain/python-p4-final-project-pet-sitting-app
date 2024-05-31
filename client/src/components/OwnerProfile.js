@@ -38,35 +38,43 @@ function OwnerProfile({ ownerId }) {
   }
 
   return (
-    <div>
-      <h2>My Profile</h2>
-      <p>Name: {owner.name}</p>
-      <p>Email: {owner.email}</p>
-      <p>Phone Number: {owner.phone}</p>
-      <p>Address: {owner.address}</p>
+    <div className="wrapper-owner">
+      <div className="profile-info">
+        <h2>My Profile</h2>
+        <p>Name: {owner.name}</p>
+        <p>Email: {owner.email}</p>
+        <p>Phone Number: {owner.phone}</p>
+        <p>Address: {owner.address}</p>
+      </div>
+      <div className="pets-owner">
+        <h3>My Pets</h3>
+        <ul>
+          {pets.map((pet, index) => (
+            <li key={index}>{pet.name}</li>
+          ))}
+        </ul>
 
-      <h3>My Pets</h3>
+        <NavLink to="/pets" className="nav-link">
+          Manage My Pets
+        </NavLink>
+      </div>
+      <div className="visits-owner">
+        <h3>Past Visits</h3>
+        <div className="visits-container">
+          <VisitList ownerId={ownerId} context="owner" />
+        </div>
+      </div>
+      <div className="past-sitter">
+        <h3>My Past Sitters</h3>
+        <ul>
+          {sitters.map((sitter) => (
+            <li key={sitter.id}>
+              <Link to={`/sitters/${sitter.id}`}>{sitter.name}</Link>
+            </li>
+          ))}
+        </ul>
+      </div>
 
-      <ul>
-        {pets.map((pet, index) => (
-          <li key={index}>{pet.name}</li>
-        ))}
-      </ul>
-<br />
-      <NavLink to={`/pets`} className="nav-link">
-        Manage My Pets
-      </NavLink>
-      <h3>Past Visits</h3>
-
-      <VisitList ownerId={ownerId} context="owner" />
-      <h3>My Past Sitters</h3>
-      <ul>
-        {sitters.map((sitter) => (
-          <li key={sitter.id}>
-            <Link to={`/sitters/${sitter.id}`}>{sitter.name}</Link>
-          </li>
-        ))}
-      </ul>
     </div>
   );
 }

@@ -44,7 +44,7 @@ function VisitList({ ownerId, petId, context }) {
     )
   );
 
-  return <ul className="cards">{visitCards}</ul>;
+  return <div className="visits-container">{visitCards}</div>;
 }
 
 export default VisitList;
