@@ -20,7 +20,7 @@ function App() {
         <Switch>
           <Route exact path="/">
             {ownerId ? (
-              <Homepage ownerId={ownerId} />
+              <Homepage ownerId={ownerId} setOwnerId={setOwnerId} />
             ) : (
               <HomepageLogout ownerId={ownerId} setOwnerId={setOwnerId} />
             )}

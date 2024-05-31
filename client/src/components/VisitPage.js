@@ -27,7 +27,7 @@ const VisitProfile = ({ ownerId }) => {
         setLoading(false);
       });
   }, [id]);
-console.log(visit)
+  console.log(visit);
   if (loading) {
     return <div>Loading...</div>;
   }
@@ -37,14 +37,25 @@ console.log(visit)
   }
 
   return (
-    <div>
+    <div className="visit-profile-container">
       <h1>Visit Information</h1>
       <h2>Date of Visit: {visit.date}</h2>
       <h2>Time of Visit: {visit.check_in_time}</h2>
-      <p><strong>Pet: </strong>{visit.pet.name}</p>
-      <p><strong>Sitter: </strong>{visit.sitter.name}</p>
-      <p><strong>Address: </strong>{visit.owner.address}</p>
-      <p><strong>Visit Notes: </strong> {visit.visit_notes}</p>
+      <p>
+        <strong>Pet: </strong>
+        {visit.pet.name}
+      </p>
+      <p>
+        <strong>Sitter: </strong>
+        {visit.sitter.name}
+      </p>
+      <p>
+        <strong>Address: </strong>
+        {visit.owner.address}
+      </p>
+      <p>
+        <strong>Visit Notes: </strong> {visit.visit_notes}
+      </p>
     </div>
   );
 };

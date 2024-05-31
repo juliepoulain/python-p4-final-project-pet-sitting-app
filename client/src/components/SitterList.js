@@ -39,14 +39,18 @@ const SitterList = ({ search }) => {
         {filteredSitters.map((sitter) => (
           <li key={sitter.id} className="sitter-card">
             <Link to={`/sitters/${sitter.id}`}>
-              <img 
-              className="home-image" 
-              src={`${sitter.image}`} 
-              alt={sitter.name}
+              <img
+                className="sitter-home-image"
+                src={`${sitter.image}`}
+                alt={sitter.name}
               />
             </Link>
-            <br/>
-            <Link to={`/sitters/${sitter.id}`}>{sitter.name}</Link>
+            <br />
+            <div className="button-link-container">
+              <Link to={`/sitters/${sitter.id}`} className="button-link">
+                {sitter.name}
+              </Link>
+            </div>
           </li>
         ))}
       </ul>
