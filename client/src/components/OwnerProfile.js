@@ -74,6 +74,7 @@ function OwnerProfile({ ownerId }) {
           ))}
         </ul>
       </div>
+
     </div>
   );
 }

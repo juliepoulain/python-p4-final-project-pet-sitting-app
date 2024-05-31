@@ -24,6 +24,7 @@ function SeeMorePetCard({ ownerId }) {
   return (
     <div className="see-more-pet-card-container">
       <div>
+
         <h1>{name}</h1>
         <img src={image} alt={name} />
       </div>
@@ -40,6 +41,7 @@ function SeeMorePetCard({ ownerId }) {
             <VisitList petId={id} context="pet" />
           </div>
         )}
+
       </div>
     </div>
   );
